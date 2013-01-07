@@ -1,0 +1,33 @@
+{
+	"project" 			: "miduoo",
+	
+	"dbConfig" : {
+		"driverClass" 	: "org.gjt.mm.mysql.Driver",
+		"username" 		: "jobbank",
+		"password" 		: "sunland2012",
+		"url" 			: "jdbc:mysql:\/\/172.16.119.8:3306/jobbank?useUnicode=true&characterEncoding=UTF-8"
+	}, 
+	
+	"mappings" : [{
+			"template"	:	"resources/template/action.ftl",
+			"dir"		:	"com/${project}/${tableName}/action"
+		}, {
+			"template"	:	"resources/template/pojo.ftl",
+			"dir"		:	"com/${project}/${tableName}/bean"
+		}, {
+			"template"	:	"resources/template/search.ftl",
+			"dir"		:	"com/${project}/${tableName}/search"
+		}, {
+			"template"	:	"resources/template/service_impl.ftl",
+			"dir"		:	"com/${project}/${tableName}/service"
+		}, {
+			"template"	:	"resources/template/service_spi.ftl",
+			"dir"		:	"com/${project}/${tableName}/service/spi"
+		}, {
+			"template"	:	"resources/template/ibatis_xml.ftl",
+			"dir"		:	"mapper/"
+		}, {
+			"template"	:	"resources/template/junit_test.ftl",
+			"dir"		:	"test/com/${project}/"
+	}]
+}
