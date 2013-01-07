@@ -13,6 +13,8 @@ import com.google.gson.Gson;
  * @date 2013-1-7
  */
 public class SetupConfig {
+	private static SetupConfig instance;
+	
 	private String project;
 	private DbConfig dbConfig;
 	private TemplateMapping[] mappings;
@@ -54,12 +56,40 @@ public class SetupConfig {
 	}
 	
 	/**
-	 * new instance of SetupConfig class
+	 * get singleton instance of SetupConfig
 	 * @author xuyl
 	 * @date 2013-1-7
 	 * @return
 	 */
 	public static SetupConfig getInstance() {
-		return new Gson().fromJson(loadJson(), SetupConfig.class);
+		if (instance == null) {
+			instance = new Gson().fromJson(loadJson(), SetupConfig.class);
+		}
+		return instance;
 	}
+
+	public String getProject() {
+		return project;
+	}
+
+	public void setProject(String project) {
+		this.project = project;
+	}
+
+	public DbConfig getDbConfig() {
+		return dbConfig;
+	}
+
+	public void setDbConfig(DbConfig dbConfig) {
+		this.dbConfig = dbConfig;
+	}
+
+	public TemplateMapping[] getMappings() {
+		return mappings;
+	}
+
+	public void setMappings(TemplateMapping[] mappings) {
+		this.mappings = mappings;
+	}
+	
 }
