@@ -1,4 +1,4 @@
-package com.sunland.core;
+package com.xu3352.core;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,8 +11,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.sunland.jdbc.Dao;
-import com.sunland.util.StringUtil;
+import com.xu3352.jdbc.Dao;
+import com.xu3352.util.StringUtil;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;

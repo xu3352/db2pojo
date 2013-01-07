@@ -1,4 +1,4 @@
-package com.sunland.util;
+package com.xu3352.util;
 
 import java.io.FileInputStream;
 import java.io.IOException;

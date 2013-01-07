@@ -1,4 +1,4 @@
-package com.sunland.core;
+package com.xu3352.core;
 
 /**
  * 数据库列实体

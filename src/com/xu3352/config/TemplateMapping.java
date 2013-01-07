@@ -1,4 +1,4 @@
-package com.sunland.config;
+package com.xu3352.config;
 
 /**
  * 模板文件的生成路径映射关系

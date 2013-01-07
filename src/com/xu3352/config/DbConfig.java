@@ -1,4 +1,4 @@
-package com.sunland.config;
+package com.xu3352.config;
 
 /**
  * JDBC数据库连接配置

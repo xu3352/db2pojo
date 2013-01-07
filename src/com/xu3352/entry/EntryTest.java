@@ -1,14 +1,14 @@
-package com.sunland.entry;
+package com.xu3352.entry;
 
 
 import java.io.File;
 import java.util.List;
 import java.util.Map;
 
-import com.sunland.core.BuildFactory;
-import com.sunland.jdbc.Dao;
-import com.sunland.util.PropertyUtil;
-import com.sunland.util.StringUtil;
+import com.xu3352.core.BuildFactory;
+import com.xu3352.jdbc.Dao;
+import com.xu3352.util.PropertyUtil;
+import com.xu3352.util.StringUtil;
 
 /**
  * 生成测试

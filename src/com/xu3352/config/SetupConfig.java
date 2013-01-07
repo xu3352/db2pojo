@@ -1,4 +1,4 @@
-package com.sunland.config;
+package com.xu3352.config;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

@@ -1,4 +1,4 @@
-package com.sunland.jdbc;
+package com.xu3352.jdbc;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mysql.jdbc.Connection;
-import com.sunland.core.Column;
-import com.sunland.util.PropertyUtil;
-import com.sunland.util.StringUtil;
+import com.xu3352.core.Column;
+import com.xu3352.util.PropertyUtil;
+import com.xu3352.util.StringUtil;
 
 /**
  * 操作数据库Dao
