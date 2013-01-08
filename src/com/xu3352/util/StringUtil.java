@@ -3,6 +3,8 @@ package com.xu3352.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.xu3352.config.SetupConfig;
+
 /**
  * 字符串工具类
  * @author Yinglong Xu
@@ -45,7 +47,7 @@ public class StringUtil {
 	 * @return String
 	 */
 	public static String javaStyleOfTableName(String tableName) {
-		String prefixs = PropertyUtil.getProperty("table.prefix");
+		String prefixs = SetupConfig.getInstance().getIgnorePrefix();
 		String[] ps = prefixs.split(",");
 		for (int i = 0; i < ps.length; i++) {
 			if (tableName.startsWith(ps[i])) {
