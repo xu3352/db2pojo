@@ -9,45 +9,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mysql.jdbc.Connection;
+import com.xu3352.config.DbConfig;
+import com.xu3352.config.SetupConfig;
 import com.xu3352.core.Column;
-import com.xu3352.util.PropertyUtil;
 import com.xu3352.util.StringUtil;
 
 /**
- * 操作数据库Dao
- * 
- * @author Yinglong Xu
- * @date 2012-2-16
+ * MySQL database Dao
+ * @author xuyl
+ * @date 2013-1-7
  */
 public class Dao {
-	/**
-	 * 驱动类路径
-	 */
-	private static String driverName = "";	// Load the JDBC driver
-	/**
-	 * 连接URL
-	 */
-	private static String url = ""; // a JDBC url
-	/**
-	 * 数据库用户名
-	 */
+	private static String driverName = ""; 	// Load the JDBC driver
+	private static String url = ""; 		// a JDBC url
 	private static String username = "";
-	/**
-	 * 数据库密码
-	 */
 	private static String password = "";
 	
-	// 初始化连接数据库信息
+	// init config
 	static {
-		driverName = PropertyUtil.getProperty("db.driverClass");
-		url = PropertyUtil.getProperty("db.url");
-		username = PropertyUtil.getProperty("db.username");
-		password = PropertyUtil.getProperty("db.password");
+		DbConfig dbConfig = SetupConfig.getInstance().getDbConfig();
+		driverName = dbConfig.getDriverClass();
+		url = dbConfig.getUrl();
+		username = dbConfig.getUsername();
+		password = dbConfig.getPassword();
 	}
 	
 	/**
-	 * 获取当前数据库所有表名列表
-	 * @return List
+	 * query all table name
+	 * @author xuyl
+	 * @date 2013-1-7
+	 * @return
 	 */
 	public List<String> getAllTableName() {
 		List<String> list = new ArrayList<String>();

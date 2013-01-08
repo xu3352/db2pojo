@@ -24,6 +24,8 @@ import freemarker.template.TemplateException;
  * @date 2012-2-16
  */
 public class BuildFactory {
+	private static final Map<String, Map<String, Object>> CACHE = new HashMap<String, Map<String, Object>>();
+	private static Dao dao = new Dao();
 	/**
 	 * package路径
 	 */
@@ -33,9 +35,9 @@ public class BuildFactory {
 	 * 配置属性
 	 */
 	private static Configuration cfg = new Configuration();
-	static {
-		setLoadingDir("template");
-	}
+//	static {
+//		setLoadingDir("resources/template");
+//	}
 
 	/**
 	 * 这里我设置模板的根目录
@@ -78,13 +80,17 @@ public class BuildFactory {
 	 * @return Map 
 	 */
 	public Map<String, Object> getParams(String tableName) {
+		if (CACHE.containsKey(tableName)) {
+			return CACHE.get(tableName);
+		}
 		// 数据准备,可以是Map,List或者是实体
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("package_path", packagePath);
 		map.put("table_name", tableName);
 		map.put("class_name", StringUtil.javaStyleOfTableName(tableName));
-		map.put("table_column", new Dao().getGenericColumns(tableName));		// 设置数据
+		map.put("table_column", dao.getGenericColumns(tableName));		// 设置数据
 		map.put("sysDate", new Date());
+		CACHE.put(tableName, map);
 		return map;
 	}
 	
