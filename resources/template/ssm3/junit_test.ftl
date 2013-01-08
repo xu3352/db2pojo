@@ -1,6 +1,5 @@
 package ${package_path};
 
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -11,10 +10,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cfo.common.exception.BaseException;
-import com.cfo.${class_name?uncap_first}.bean.${class_name};
-import com.cfo.${class_name?uncap_first}.bean.${class_name}Search;
-import com.cfo.${class_name?uncap_first}.service.spi.I${class_name}Service;
+import com.${project}.common.exception.BaseException;
+import com.${project}.${class_name?uncap_first}.bean.${class_name};
+import com.${project}.${class_name?uncap_first}.bean.${class_name}Search;
+import com.${project}.${class_name?uncap_first}.service.spi.I${class_name}Service;
 
 /**
  * ${class_name} JUnit Test<br/>
@@ -48,7 +47,7 @@ public class ${class_name}Test {
 		try {
 			${class_name} entity = new ${class_name}();
 			entity.setId(1);
-			${class_name?uncap_first}Service.save${class_name}(entity);
+			${class_name?uncap_first}Service.save(entity);
 			System.out.println( entity );
 		} catch (Exception e) {
 			e.printStackTrace();
