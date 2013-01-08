@@ -3,31 +3,42 @@
 	
 	"dbConfig" : {
 		"driverClass" 	: "org.gjt.mm.mysql.Driver",
-		"username" 		: "jobbank",
+		"username" 		: "miduoo",
 		"password" 		: "sunland2012",
-		"url" 			: "jdbc:mysql:\/\/172.16.119.8:3306/jobbank?useUnicode=true&characterEncoding=UTF-8"
+		"url" 			: "jdbc:mysql:\/\/172.16.119.8:3306/miduoo?useUnicode=true&characterEncoding=UTF-8"
 	}, 
+	
+	"ignorePrefix" : "t_",
+	
+	"modelGroup" : ["pz_*", "class_*", "user_*", "vedio_*" ],
 	
 	"mappings" : [{
 			"template"	:	"resources/template/action.ftl",
-			"dir"		:	"com/${project}/${tableName}/action"
+			"dir"		:	"com/${project}/${model}/action",
+			"rpadding"	:	"Action"
 		}, {
 			"template"	:	"resources/template/pojo.ftl",
-			"dir"		:	"com/${project}/${tableName}/bean"
+			"dir"		:	"com/${project}/${model}/bean"
 		}, {
 			"template"	:	"resources/template/search.ftl",
-			"dir"		:	"com/${project}/${tableName}/search"
+			"dir"		:	"com/${project}/${model}/search",
+			"rpadding"	:	"Search"
 		}, {
 			"template"	:	"resources/template/service_impl.ftl",
-			"dir"		:	"com/${project}/${tableName}/service"
+			"dir"		:	"com/${project}/${model}/service",
+			"rpadding"	:	"ServiceImpl"
 		}, {
 			"template"	:	"resources/template/service_spi.ftl",
-			"dir"		:	"com/${project}/${tableName}/service/spi"
+			"dir"		:	"com/${project}/${model}/service/spi",
+			"lpadding"	:	"I",
+			"rpadding"	:	"Service"
 		}, {
 			"template"	:	"resources/template/ibatis_xml.ftl",
-			"dir"		:	"mapper/"
+			"dir"		:	"mapper/",
+			"suffix"	:	"xml"
 		}, {
 			"template"	:	"resources/template/junit_test.ftl",
-			"dir"		:	"test/com/${project}/"
+			"dir"		:	"test/com/${project}/",
+			"rpadding"	:	"Test"
 	}]
 }
