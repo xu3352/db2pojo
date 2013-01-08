@@ -23,7 +23,6 @@ public class SetupConfig {
 	private String author = "admin";	// default 'admin'
 	private String ignorePrefix;
 	private DbConfig dbConfig;
-	private String[] modelGroup;
 	private TemplateMapping[] mappings;
 	
 	/**
@@ -93,14 +92,6 @@ public class SetupConfig {
 		this.ignorePrefix = ignorePrefix;
 	}
 
-	public String[] getModelGroup() {
-		return modelGroup;
-	}
-
-	public void setModelGroup(String[] modelGroup) {
-		this.modelGroup = modelGroup;
-	}
-
 	public DbConfig getDbConfig() {
 		return dbConfig;
 	}
@@ -116,15 +107,14 @@ public class SetupConfig {
 	public void setMappings(TemplateMapping[] mappings) {
 		this.mappings = mappings;
 	}
-	
-	public static void main(String[] args) {
-		System.out.println(getInstance());
-	}
-	
+
 	@Override
 	public String toString() {
-		return "SetupConfig [project=" + project + ", ignorePrefix=" + ignorePrefix + ", modelGroup="
-				+ Arrays.toString(modelGroup) + ",\n\t dbConfig=" + dbConfig + ",\n\t mappings=" + Arrays.toString(mappings)
-				+ "]";
+		return "SetupConfig [project=" + project + ", author=" + author + ", ignorePrefix=" + ignorePrefix
+				+ ",\n\t dbConfig=" + dbConfig + ",\n\t mappings=" + Arrays.toString(mappings) + "]";
+	}
+
+	public static void main(String[] args) {
+		System.out.println(getInstance());
 	}
 }

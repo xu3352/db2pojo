@@ -52,7 +52,6 @@ public class Builder {
 	 * @return
 	 */
 	private String getModelName(String tableName) {
-		// TODO : model group name
 		return StringUtil.javaStyleOfTableName(tableName);
 	}
 
@@ -80,12 +79,12 @@ public class Builder {
 	 * @param filePath
 	 */
 	private void mkdir(String filePath) {
-		int index = filePath.lastIndexOf('\\');
-		if (index == -1) {
-			index = filePath.lastIndexOf('/');
-		}
+		int index = filePath.lastIndexOf("\\");
+		int index2 = filePath.lastIndexOf("/");
+		if (index + index2 == -2) return;
+		index = index > index2 ? index : index2;
 		if (index != -1 && !new File(filePath.substring(0, index)).exists()) {
-			// System.out.println("mkdir - "+ filePath.substring(0, index) );
+			System.out.println("mkdir - "+ filePath.substring(0, index) );
 			new File(filePath.substring(0, index)).mkdirs();
 		}
 	}

@@ -12,8 +12,6 @@
 	
 	"ignorePrefix" : "t_",
 	
-	"modelGroup" : ["pz_*", "class_*", "user_*", "vedio_*" ],
-	
 	"mappings" : [{
 			"template"	:	"resources/template/ssm3/controller.ftl",
 			"dir"		:	"com/${project}/${model}/controller",
