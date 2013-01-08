@@ -40,7 +40,8 @@
 			"suffix"	:	"xml"
 		}, {
 			"template"	:	"resources/template/ssm3/junit_test.ftl",
-			"dir"		:	"test/com/${project}",
+			"dir"		:	"test/com/${project}/${model}",
+			"packagePath":	"com.${project}.${model}",
 			"rpadding"	:	"Test"
 	}]
 }

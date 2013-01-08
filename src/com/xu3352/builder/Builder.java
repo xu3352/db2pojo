@@ -37,25 +37,11 @@ public class Builder {
 		for (TemplateMapping m : mappings) {
 			// iterator all databases tables.
 			for (String tableName : tablesList) {
-				String packagePath = buildDir(m, tableName).replaceAll("[\\/]", ".");
+				String packagePath = m.buildPackage(config.getProject(), getModelName(tableName));
 				Map<String, Object> data = factory.getParams(tableName, packagePath);
 				factory.build(m.getTemplate(), data, getOutPutPath(m, tableName));
-				data = null;
 			}
 		}
-	}
-	
-	/**
-	 * prepare the dir path
-	 * @author xuyl
-	 * @date 2013-1-7
-	 * @param dir
-	 * @return
-	 */
-	private String buildDir(TemplateMapping m, String tableName) {
-		return m.getDir()
-				.replaceAll("\\$\\{project\\}", config.getProject())
-				.replaceAll("\\$\\{model\\}", getModelName(tableName));
 	}
 
 	/**
@@ -81,7 +67,7 @@ public class Builder {
 	private String getOutPutPath(TemplateMapping m, String tableName) {
 		String path = SetupConfig.USER_DIR + SetupConfig.SEPARATOR 
 				+ "target" + SetupConfig.SEPARATOR 
-				+ buildDir(m, tableName) + SetupConfig.SEPARATOR;
+				+ m.buildDir(config.getProject(), getModelName(tableName)) + SetupConfig.SEPARATOR;
 		path += m.getLpadding() + StringUtil.className(tableName) + m.getRpadding() + "." + m.getSuffix();
 		mkdir(path);
 		return path;
