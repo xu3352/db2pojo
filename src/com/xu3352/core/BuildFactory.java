@@ -9,8 +9,10 @@ import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.xu3352.config.SetupConfig;
 import com.xu3352.jdbc.Dao;
 import com.xu3352.util.StringUtil;
 
@@ -25,19 +27,13 @@ import freemarker.template.TemplateException;
  */
 public class BuildFactory {
 	private static final Map<String, Map<String, Object>> CACHE = new HashMap<String, Map<String, Object>>();
+	private static SetupConfig config = SetupConfig.getInstance();
 	private static Dao dao = new Dao();
-	/**
-	 * package路径
-	 */
-	private String packagePath = "com.test";
 	
 	/**
 	 * 配置属性
 	 */
 	private static Configuration cfg = new Configuration();
-//	static {
-//		setLoadingDir("resources/template");
-//	}
 
 	/**
 	 * 这里我设置模板的根目录
@@ -79,34 +75,24 @@ public class BuildFactory {
 	 * @param tableName 
 	 * @return Map 
 	 */
-	public Map<String, Object> getParams(String tableName) {
+	public Map<String, Object> getParams(String tableName, String packagePath) {
 		if (CACHE.containsKey(tableName)) {
-			return CACHE.get(tableName);
+			Map<String, Object> map = CACHE.get(tableName);
+			map.put("package_path", packagePath);
+			return map;
 		}
 		// 数据准备,可以是Map,List或者是实体
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("package_path", packagePath);
 		map.put("table_name", tableName);
-		map.put("class_name", StringUtil.javaStyleOfTableName(tableName));
-		map.put("table_column", dao.getGenericColumns(tableName));		// 设置数据
+		map.put("class_name", StringUtil.className(tableName));
+		List<Column> columns = dao.getGenericColumns(tableName);
+		map.put("table_column", columns);		// 设置数据
+		map.put("hasDateColumn", Column.typeContains(columns, "Date"));		// 特殊字符处理
+		map.put("project", config.getProject());
+		map.put("author", config.getAuthor());
 		map.put("sysDate", new Date());
 		CACHE.put(tableName, map);
 		return map;
-	}
-	
-	/**
-	 * 获取包路径
-	 * @return String
-	 */
-	public String getPackagePath() {
-		return packagePath;
-	}
-
-	/**
-	 * 设置包路径
-	 * @param packagePath
-	 */
-	public void setPackagePath(String packagePath) {
-		this.packagePath = packagePath;
 	}
 }

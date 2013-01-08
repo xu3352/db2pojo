@@ -1,11 +1,13 @@
 {
-	"project" 			: "miduoo",
+	"project" 			: "cfo",
+	
+	"author" 			: "xuyl",
 	
 	"dbConfig" : {
 		"driverClass" 	: "org.gjt.mm.mysql.Driver",
-		"username" 		: "miduoo",
-		"password" 		: "sunland2012",
-		"url" 			: "jdbc:mysql:\/\/172.16.119.8:3306/miduoo?useUnicode=true&characterEncoding=UTF-8"
+		"username" 		: "root",
+		"password" 		: "xu3352",
+		"url" 			: "jdbc:mysql:\/\/localhost:3306/test?useUnicode=true&characterEncoding=UTF-8"
 	}, 
 	
 	"ignorePrefix" : "t_",
@@ -13,32 +15,32 @@
 	"modelGroup" : ["pz_*", "class_*", "user_*", "vedio_*" ],
 	
 	"mappings" : [{
-			"template"	:	"resources/template/action.ftl",
-			"dir"		:	"com/${project}/${model}/action",
-			"rpadding"	:	"Action"
+			"template"	:	"resources/template/ssm3/controller.ftl",
+			"dir"		:	"com/${project}/${model}/controller",
+			"rpadding"	:	"Controller"
 		}, {
-			"template"	:	"resources/template/pojo.ftl",
+			"template"	:	"resources/template/ssm3/pojo.ftl",
 			"dir"		:	"com/${project}/${model}/bean"
 		}, {
-			"template"	:	"resources/template/search.ftl",
-			"dir"		:	"com/${project}/${model}/search",
+			"template"	:	"resources/template/ssm3/search.ftl",
+			"dir"		:	"com/${project}/${model}/bean",
 			"rpadding"	:	"Search"
 		}, {
-			"template"	:	"resources/template/service_impl.ftl",
+			"template"	:	"resources/template/ssm3/service_impl.ftl",
 			"dir"		:	"com/${project}/${model}/service",
 			"rpadding"	:	"ServiceImpl"
 		}, {
-			"template"	:	"resources/template/service_spi.ftl",
+			"template"	:	"resources/template/ssm3/service_spi.ftl",
 			"dir"		:	"com/${project}/${model}/service/spi",
 			"lpadding"	:	"I",
 			"rpadding"	:	"Service"
 		}, {
-			"template"	:	"resources/template/ibatis_xml.ftl",
-			"dir"		:	"mapper/",
+			"template"	:	"resources/template/ssm3/mybatis_xml.ftl",
+			"dir"		:	"mapper",
 			"suffix"	:	"xml"
 		}, {
-			"template"	:	"resources/template/junit_test.ftl",
-			"dir"		:	"test/com/${project}/",
+			"template"	:	"resources/template/ssm3/junit_test.ftl",
+			"dir"		:	"test/com/${project}",
 			"rpadding"	:	"Test"
 	}]
 }

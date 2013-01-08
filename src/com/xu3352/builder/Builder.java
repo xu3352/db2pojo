@@ -33,15 +33,14 @@ public class Builder {
 	public void db2pojoEntry() {
 		// iterator all template file
 		TemplateMapping[] mappings = config.getMappings();
+		List<String> tablesList = new Dao().getAllTableName();
 		for (TemplateMapping m : mappings) {
-			String template = m.getTemplate();
 			// iterator all databases tables.
-			List<String> tablesList = new Dao().getAllTableName();
 			for (String tableName : tablesList) {
-				// package of pojo
-				factory.setPackagePath(buildDir(m, tableName).replaceAll("[\\/]", "."));
-				Map<String, Object> data = factory.getParams(tableName);
-				factory.build(template, data, getOutPutPath(m, tableName));
+				String packagePath = buildDir(m, tableName).replaceAll("[\\/]", ".");
+				Map<String, Object> data = factory.getParams(tableName, packagePath);
+				factory.build(m.getTemplate(), data, getOutPutPath(m, tableName));
+				data = null;
 			}
 		}
 	}
@@ -83,7 +82,7 @@ public class Builder {
 		String path = SetupConfig.USER_DIR + SetupConfig.SEPARATOR 
 				+ "target" + SetupConfig.SEPARATOR 
 				+ buildDir(m, tableName) + SetupConfig.SEPARATOR;
-		path += m.getLpadding() + getClassName(tableName) + m.getRpadding() + "." + m.getSuffix();
+		path += m.getLpadding() + StringUtil.className(tableName) + m.getRpadding() + "." + m.getSuffix();
 		mkdir(path);
 		return path;
 	}
@@ -100,20 +99,9 @@ public class Builder {
 			index = filePath.lastIndexOf('/');
 		}
 		if (index != -1 && !new File(filePath.substring(0, index)).exists()) {
-			System.out.println("mkdir - "+ filePath.substring(0, index) );
+			// System.out.println("mkdir - "+ filePath.substring(0, index) );
 			new File(filePath.substring(0, index)).mkdirs();
 		}
-	}
-
-	/**
-	 * pojo class name
-	 * @author xuyl
-	 * @date 2013-1-7
-	 * @param tableName
-	 * @return
-	 */
-	private String getClassName(String tableName) {
-		return StringUtil.capFirst(StringUtil.javaStyleOfTableName(tableName));
 	}
 	
 	/**
@@ -122,6 +110,6 @@ public class Builder {
 	 */
 	public static void main(String[] args) {
 		new Builder().db2pojoEntry();
-		System.out.println("congratulations! your code generate complete....^_^.....");
+		System.out.println("Congratulations! Your code generate successfully....^_^.....");
 	}
 }

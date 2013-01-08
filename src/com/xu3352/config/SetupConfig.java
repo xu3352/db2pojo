@@ -20,6 +20,7 @@ public class SetupConfig {
 	public static final String SEPARATOR = File.separator;
 	
 	private String project;
+	private String author = "admin";	// default 'admin'
 	private String ignorePrefix;
 	private DbConfig dbConfig;
 	private String[] modelGroup;
@@ -54,13 +55,6 @@ public class SetupConfig {
 	    }
 		return sb.toString();
 	}
-	
-	@Override
-	public String toString() {
-		return "SetupConfig [project=" + project + ", ignorePrefix=" + ignorePrefix + ", modelGroup="
-				+ Arrays.toString(modelGroup) + ",\n\t dbConfig=" + dbConfig + ",\n\t mappings=" + Arrays.toString(mappings)
-				+ "]";
-	}
 
 	/**
 	 * get singleton instance of SetupConfig
@@ -81,6 +75,14 @@ public class SetupConfig {
 
 	public void setProject(String project) {
 		this.project = project;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 
 	public String getIgnorePrefix() {
@@ -117,5 +119,12 @@ public class SetupConfig {
 	
 	public static void main(String[] args) {
 		System.out.println(getInstance());
+	}
+	
+	@Override
+	public String toString() {
+		return "SetupConfig [project=" + project + ", ignorePrefix=" + ignorePrefix + ", modelGroup="
+				+ Arrays.toString(modelGroup) + ",\n\t dbConfig=" + dbConfig + ",\n\t mappings=" + Arrays.toString(mappings)
+				+ "]";
 	}
 }

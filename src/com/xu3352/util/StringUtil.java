@@ -56,4 +56,15 @@ public class StringUtil {
 		}
 		return StringUtil.javaStyle(tableName);
 	}
+	
+	/**
+	 * pojo class name
+	 * @author xuyl
+	 * @date 2013-1-7
+	 * @param tableName
+	 * @return
+	 */
+	public static String className(String tableName) {
+		return capFirst(javaStyleOfTableName(tableName));
+	}
 }
