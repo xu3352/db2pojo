@@ -23,6 +23,7 @@ public class SetupConfig {
 	private String author = "admin";	// default 'admin'
 	private String ignorePrefix;
 	private DbConfig dbConfig;
+	private String templateDir;
 	private TemplateMapping[] mappings;
 	
 	/**
@@ -98,6 +99,14 @@ public class SetupConfig {
 
 	public void setDbConfig(DbConfig dbConfig) {
 		this.dbConfig = dbConfig;
+	}
+
+	public String getTemplateDir() {
+		return templateDir;
+	}
+
+	public void setTemplateDir(String templateDir) {
+		this.templateDir = templateDir;
 	}
 
 	public TemplateMapping[] getMappings() {

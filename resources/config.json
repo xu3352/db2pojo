@@ -12,32 +12,34 @@
 	
 	"ignorePrefix" : "t_",
 	
+	"templateDir" : "resources/template/ssm3/",
+	
 	"mappings" : [{
-			"template"	:	"resources/template/ssm3/controller.ftl",
+			"template"	:	"controller.ftl",
 			"dir"		:	"com/${project}/${model}/controller",
 			"rpadding"	:	"Controller"
 		}, {
-			"template"	:	"resources/template/ssm3/pojo.ftl",
+			"template"	:	"pojo.ftl",
 			"dir"		:	"com/${project}/${model}/bean"
 		}, {
-			"template"	:	"resources/template/ssm3/search.ftl",
+			"template"	:	"search.ftl",
 			"dir"		:	"com/${project}/${model}/bean",
 			"rpadding"	:	"Search"
 		}, {
-			"template"	:	"resources/template/ssm3/service_impl.ftl",
+			"template"	:	"service_impl.ftl",
 			"dir"		:	"com/${project}/${model}/service",
 			"rpadding"	:	"ServiceImpl"
 		}, {
-			"template"	:	"resources/template/ssm3/service_spi.ftl",
+			"template"	:	"service_spi.ftl",
 			"dir"		:	"com/${project}/${model}/service/spi",
 			"lpadding"	:	"I",
 			"rpadding"	:	"Service"
 		}, {
-			"template"	:	"resources/template/ssm3/mybatis_xml.ftl",
+			"template"	:	"mybatis_xml.ftl",
 			"dir"		:	"mapper",
 			"suffix"	:	"xml"
 		}, {
-			"template"	:	"resources/template/ssm3/junit_test.ftl",
+			"template"	:	"junit_test.ftl",
 			"dir"		:	"test/com/${project}/${model}",
 			"packagePath":	"com.${project}.${model}",
 			"rpadding"	:	"Test"

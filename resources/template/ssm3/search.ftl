@@ -35,12 +35,13 @@ public class ${class_name}Search extends PageModel {
 	// getter && setter
 	// 在setter方法最后加上"return this;"并把返回参数改为${class_name}可以实现连缀设置属性
 	<#list table_column as c>
-	public ${c.type} get${c.nameJ}() {
+	public ${c.type} get${c.nameJ?cap_first}() {
 		return ${c.nameJ};
 	}
 
-	public void set${c.nameJ}(${c.type} ${c.nameJ}) {
+	public ${class_name} set${c.nameJ?cap_first}(${c.type} ${c.nameJ}) {
 		this.${c.nameJ} = ${c.nameJ};
+		return this;
 	}
 	
 	</#list>

@@ -39,11 +39,22 @@ public class Builder {
 			for (String tableName : tablesList) {
 				String packagePath = m.buildPackage(config.getProject(), getModelName(tableName));
 				Map<String, Object> data = factory.getParams(tableName, packagePath);
-				factory.build(m.getTemplate(), data, getOutPutPath(m, tableName));
+				factory.build(getTemplatePath(m), data, getOutPutPath(m, tableName));
 			}
 		}
 	}
-
+	
+	/**
+	 * freemarker template file path
+	 * @author xuyl
+	 * @date 2013-1-30
+	 * @param m
+	 * @return
+	 */
+	private String getTemplatePath(TemplateMapping m) {
+		return config.getTemplateDir() + File.separator + m.getTemplate();
+	}
+	
 	/**
 	 * model name of project.(default: tableName in java style )
 	 * @author xuyl
