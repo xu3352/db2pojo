@@ -25,6 +25,7 @@ public class SetupConfig {
 	private DbConfig dbConfig;
 	private String templateDir;
 	private TemplateMapping[] mappings;
+	private Group[] groups;
 	
 	/**
 	 * private Construction
@@ -117,10 +118,19 @@ public class SetupConfig {
 		this.mappings = mappings;
 	}
 
+	public Group[] getGroups() {
+		return groups;
+	}
+
+	public void setGroups(Group[] groups) {
+		this.groups = groups;
+	}
+
 	@Override
 	public String toString() {
 		return "SetupConfig [project=" + project + ", author=" + author + ", ignorePrefix=" + ignorePrefix
-				+ ",\n\t dbConfig=" + dbConfig + ",\n\t mappings=" + Arrays.toString(mappings) + "]";
+				+ ",\n\tgroups=" + Arrays.toString(groups)
+				+ ",\n\tdbConfig=" + dbConfig + ",\n\tmappings=" + Arrays.toString(mappings) + "]";
 	}
 
 	public static void main(String[] args) {

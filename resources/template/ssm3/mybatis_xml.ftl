@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.${project}.${class_name?uncap_first}.bean.${class_name}">
+<mapper namespace="com.${model_package}.bean.${class_name}">
 	<resultMap type="${class_name}" id="${class_name?uncap_first}ResultMap">
 		<#list table_column as c>
 		<result property="${c.nameJ}" column="${c.name}" />
@@ -36,7 +36,7 @@
 		update ${table_name} 
 		<trim prefix="set" suffixOverrides=",">
 		<#list table_column as c><#if (c_index>=1)>
-			<if test="${c.nameJ} != null and ${c.nameJ} != ''">${c.name} = ${r"#"}{${c.name}},</if>
+			<if test="${c.nameJ} != null and ${c.nameJ} != ''">${c.name} = ${r"#"}{${c.nameJ}},</if>
 		</#if></#list>
 		</trim>
 		<where>id = ${r"#"}{id}</where>

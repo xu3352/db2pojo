@@ -14,6 +14,7 @@ import java.util.Map;
 
 import com.xu3352.config.SetupConfig;
 import com.xu3352.jdbc.Dao;
+import com.xu3352.util.MyUtils;
 import com.xu3352.util.StringUtil;
 
 import freemarker.template.Configuration;
@@ -78,12 +79,14 @@ public class BuildFactory {
 	public Map<String, Object> getParams(String tableName, String packagePath) {
 		if (CACHE.containsKey(tableName)) {
 			Map<String, Object> map = CACHE.get(tableName);
+			map.put("model_package", MyUtils.buildModelPackage(tableName));
 			map.put("package_path", packagePath);
 			return map;
 		}
 		// 数据准备,可以是Map,List或者是实体
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("package_path", packagePath);
+		map.put("model_package", MyUtils.buildModelPackage(tableName));
 		map.put("table_name", tableName);
 		map.put("class_name", StringUtil.className(tableName));
 		List<Column> columns = dao.getGenericColumns(tableName);

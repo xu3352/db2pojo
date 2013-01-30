@@ -1,5 +1,5 @@
 {
-	"project" 			: "mars",
+	"project" 			: "video",
 	
 	"author" 			: "xuyl",
 	
@@ -7,34 +7,23 @@
 		"driverClass" 	: "org.gjt.mm.mysql.Driver",
 		"username" 		: "root",
 		"password" 		: "xu3352",
-		"url" 			: "jdbc:mysql:\/\/localhost:3306/mars?useUnicode=true&characterEncoding=UTF-8"
+		"url" 			: "jdbc:mysql:\/\/localhost:3306/test?useUnicode=true&characterEncoding=UTF-8"
 	}, 
 	
-	"ignorePrefix" : "t_",
+	"ignorePrefix" : "t_,m_",
 	
-	"groups" : [{
-			"name" 	 : "course",
-			"prefix" : "course,question,quiz"
-		}, {
-			"name" 	 : "system",
-			"prefix" : "sys"
-		}, {
-			"name" 	 : "users",
-			"prefix" : "user"
-	}],
-	
-	"templateDir" : "resources/template/ssm3/",
+	"templateDir" : "resources/template/ssi/",
 	
 	"mappings" : [{
-			"template"	:	"controller.ftl",
-			"dir"		:	"com/${project}/${model}/controller",
-			"rpadding"	:	"Controller"
+			"template"	:	"action.ftl",
+			"dir"		:	"com/${project}/${model}/action",
+			"rpadding"	:	"Action"
 		}, {
 			"template"	:	"pojo.ftl",
-			"dir"		:	"com/${project}/${model}/bean"
+			"dir"		:	"com/${project}/${model}/pojo"
 		}, {
 			"template"	:	"search.ftl",
-			"dir"		:	"com/${project}/${model}/bean",
+			"dir"		:	"com/${project}/${model}/search",
 			"rpadding"	:	"Search"
 		}, {
 			"template"	:	"service_impl.ftl",
@@ -46,8 +35,8 @@
 			"lpadding"	:	"I",
 			"rpadding"	:	"Service"
 		}, {
-			"template"	:	"mybatis_xml.ftl",
-			"dir"		:	"mapper/${model}",
+			"template"	:	"ibatis_xml.ftl",
+			"dir"		:	"mapper",
 			"suffix"	:	"xml"
 		}, {
 			"template"	:	"junit_test.ftl",

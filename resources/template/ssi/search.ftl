@@ -1,9 +1,7 @@
 package ${package_path};
 
 <#if (hasDateColumn)>import java.util.Date;</#if>
-
-import org.apache.ibatis.type.Alias;
-import com.${project}.common.beans.PageModel;
+import com.plat.common.search.BaseSearch;
 
 /**
  * POJO Search:${class_name}
@@ -11,9 +9,7 @@ import com.${project}.common.beans.PageModel;
  * @author ${author}
  * @date ${sysDate?date}
  */
-@SuppressWarnings({ "rawtypes" })
-@Alias("${class_name}Search")
-public class ${class_name}Search extends PageModel {
+public class ${class_name}Search extends BaseSearch {
 	
 	<#list table_column as c>
 	private ${c.type}	${c.nameJ};		<#if (c.remark?exists && c.remark!="")> /* ${c.remark} */ </#if>

@@ -3,8 +3,8 @@ package ${package_path};
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.${project}.common.service.MyBatisServiceSupport;
-import com.${model_package}.service.spi.I${class_name}Service;
+import com.plat.common.service.BaseService;
+import com.${project}.${class_name?uncap_first}.service.spi.I${class_name}Service;
 
 /**
  * Service Implementation:${class_name}
@@ -13,6 +13,6 @@ import com.${model_package}.service.spi.I${class_name}Service;
  */
 @Service
 @Transactional
-public class ${class_name}ServiceImpl extends MyBatisServiceSupport implements I${class_name}Service {
+public class ${class_name}ServiceImpl extends BaseService implements I${class_name}Service {
 	
 }

@@ -1,6 +1,5 @@
 package com.xu3352.builder;
 
-import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +7,7 @@ import com.xu3352.config.SetupConfig;
 import com.xu3352.config.TemplateMapping;
 import com.xu3352.core.BuildFactory;
 import com.xu3352.jdbc.Dao;
-import com.xu3352.util.StringUtil;
+import com.xu3352.util.MyUtils;
 
 /**
  * Builder Entry
@@ -37,66 +36,10 @@ public class Builder {
 		for (TemplateMapping m : mappings) {
 			// iterator all databases tables.
 			for (String tableName : tablesList) {
-				String packagePath = m.buildPackage(config.getProject(), getModelName(tableName));
+				String packagePath = m.buildPackage(config.getProject(), MyUtils.getModelName(tableName, "."));
 				Map<String, Object> data = factory.getParams(tableName, packagePath);
-				factory.build(getTemplatePath(m), data, getOutPutPath(m, tableName));
+				factory.build(MyUtils.getTemplatePath(m), data, MyUtils.getOutPutPath(m, tableName));
 			}
-		}
-	}
-	
-	/**
-	 * freemarker template file path
-	 * @author xuyl
-	 * @date 2013-1-30
-	 * @param m
-	 * @return
-	 */
-	private String getTemplatePath(TemplateMapping m) {
-		return config.getTemplateDir() + File.separator + m.getTemplate();
-	}
-	
-	/**
-	 * model name of project.(default: tableName in java style )
-	 * @author xuyl
-	 * @date 2013-1-8
-	 * @param tableName
-	 * @return
-	 */
-	private String getModelName(String tableName) {
-		return StringUtil.javaStyleOfTableName(tableName);
-	}
-
-	/**
-	 * generate output file path.
-	 * @author xuyl
-	 * @date 2013-1-7
-	 * @param m
-	 * @param tableName
-	 * @return
-	 */
-	private String getOutPutPath(TemplateMapping m, String tableName) {
-		String path = SetupConfig.USER_DIR + SetupConfig.SEPARATOR 
-				+ "target" + SetupConfig.SEPARATOR 
-				+ m.buildDir(config.getProject(), getModelName(tableName)) + SetupConfig.SEPARATOR;
-		path += m.getLpadding() + StringUtil.className(tableName) + m.getRpadding() + "." + m.getSuffix();
-		mkdir(path);
-		return path;
-	}
-	
-	/**
-	 * mkdir by path if not exist
-	 * @author xuyl
-	 * @date 2013-1-7
-	 * @param filePath
-	 */
-	private void mkdir(String filePath) {
-		int index = filePath.lastIndexOf("\\");
-		int index2 = filePath.lastIndexOf("/");
-		if (index + index2 == -2) return;
-		index = index > index2 ? index : index2;
-		if (index != -1 && !new File(filePath.substring(0, index)).exists()) {
-			System.out.println("mkdir - "+ filePath.substring(0, index) );
-			new File(filePath.substring(0, index)).mkdirs();
 		}
 	}
 	

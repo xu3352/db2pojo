@@ -11,9 +11,9 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.${project}.common.exception.BaseException;
-import com.${model_package}.bean.${class_name};
-import com.${model_package}.bean.${class_name}Search;
-import com.${model_package}.service.spi.I${class_name}Service;
+import com.${project}.${class_name?uncap_first}.bean.${class_name};
+import com.${project}.${class_name?uncap_first}.bean.${class_name}Search;
+import com.${project}.${class_name?uncap_first}.service.spi.I${class_name}Service;
 
 /**
  * ${class_name} JUnit Test<br/>
