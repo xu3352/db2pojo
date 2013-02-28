@@ -159,7 +159,7 @@ public class Dao {
 	 * @throws SQLException
 	 */
 	private String typesConvertOfMysql2Java(String mysqlType) throws SQLException {
-		if (mysqlType.startsWith("varchar")) {
+		if (mysqlType.startsWith("varchar") || mysqlType.startsWith("longtext")) {
 			return "String";
 		} else if (mysqlType.startsWith("int") || mysqlType.startsWith("bigint")) {
 			return "Integer";
