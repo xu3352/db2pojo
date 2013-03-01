@@ -13,11 +13,11 @@ import com.xu3352.util.StringUtil;
  * @author xuyl
  * @date 2013-1-7
  */
-public class MysqlDao extends AbstractDaoSupport {
+public class OracleDao extends AbstractDaoSupport {
 	
 	@Override
 	public List<String> queryAllTables() {
-		return queryAllTables("show tables");
+		return queryAllTables("select lower(tname) from tab where tabtype = 'TABLE' order by 1");
 	}
 
 	@Override
@@ -26,11 +26,16 @@ public class MysqlDao extends AbstractDaoSupport {
 		try {
 			checkDriver();
 			Connection conn = getConn();
-			ResultSet rs = createQuary(conn, "show full fields from " + tableName);
+			String sql = 
+					"select  lower(t1.column_name), lower(t1.data_type),  t2.comments " +
+					" from  user_col_comments  t2  left  join  user_tab_columns  t1 " + 
+					" on  t1.table_name  =  t2.table_name  and  t1.column_name  =  t2.column_name " + 
+					" where  t1.table_name  =  upper('"+tableName+"')"; 
+			ResultSet rs = createQuary(conn, sql);
 			while (rs.next()) {
 				String type = typesConvert(rs.getString(2));
 				String javaStyle = StringUtil.javaStyle(rs.getString(1));
-				list.add(new Column(type, rs.getString(1), javaStyle, rs.getString(9)));
+				list.add(new Column(type, rs.getString(1), javaStyle, rs.getString(3)));
 			}
 			rs.close();
 			conn.close();
@@ -42,11 +47,11 @@ public class MysqlDao extends AbstractDaoSupport {
 	
 	@Override
 	public String typesConvert(String mysqlType) {
-		if (mysqlType.startsWith("varchar") || mysqlType.startsWith("longtext")) {
+		if (mysqlType.startsWith("varchar") || mysqlType.startsWith("char")) {
 			return "String";
-		} else if (mysqlType.startsWith("int") || mysqlType.startsWith("bigint")) {
+		} else if (mysqlType.startsWith("long")) {
 			return "Integer";
-		} else if (mysqlType.startsWith("double")) {
+		} else if (mysqlType.startsWith("number")) {
 			return "Double";
 		} else if (mysqlType.startsWith("date")) {
 			return "Date";
@@ -59,10 +64,9 @@ public class MysqlDao extends AbstractDaoSupport {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		AbstractDaoSupport dao = new MysqlDao();
-		List<String> tables = dao.queryAllTables();
-		System.out.println(tables);
-		List<Column> list = dao.queryColumns(tables.get(0));
+		AbstractDaoSupport dao = new OracleDao();
+		System.out.println(dao.queryAllTables());
+		List<Column> list = dao.queryColumns("sys_city");
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i));
 		}
