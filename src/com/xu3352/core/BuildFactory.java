@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.xu3352.config.SetupConfig;
-import com.xu3352.jdbc.Dao;
+import com.xu3352.jdbc.AbstractDaoSupport;
 import com.xu3352.util.MyUtils;
 import com.xu3352.util.StringUtil;
 
@@ -29,7 +29,7 @@ import freemarker.template.TemplateException;
 public class BuildFactory {
 	private static final Map<String, Map<String, Object>> CACHE = new HashMap<String, Map<String, Object>>();
 	private static SetupConfig config = SetupConfig.getInstance();
-	private static Dao dao = new Dao();
+	private static AbstractDaoSupport dao = AbstractDaoSupport.getInstance();
 	
 	/**
 	 * 配置属性
@@ -89,7 +89,7 @@ public class BuildFactory {
 		map.put("model_package", MyUtils.buildModelPackage(tableName));
 		map.put("table_name", tableName);
 		map.put("class_name", StringUtil.className(tableName));
-		List<Column> columns = dao.getGenericColumns(tableName);
+		List<Column> columns = dao.queryColumns(tableName);
 		map.put("table_column", columns);		// 设置数据
 		map.put("hasDateColumn", Column.typeContains(columns, "Date"));		// 特殊字符处理
 		map.put("project", config.getProject());

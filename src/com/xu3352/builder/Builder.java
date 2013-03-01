@@ -6,7 +6,7 @@ import java.util.Map;
 import com.xu3352.config.SetupConfig;
 import com.xu3352.config.TemplateMapping;
 import com.xu3352.core.BuildFactory;
-import com.xu3352.jdbc.Dao;
+import com.xu3352.jdbc.AbstractDaoSupport;
 import com.xu3352.util.MyUtils;
 
 /**
@@ -32,7 +32,7 @@ public class Builder {
 	public void db2pojoEntry() {
 		// iterator all template file
 		TemplateMapping[] mappings = config.getMappings();
-		List<String> tablesList = new Dao().getAllTableName();
+		List<String> tablesList = AbstractDaoSupport.getInstance().queryAllTables();
 		for (TemplateMapping m : mappings) {
 			// iterator all databases tables.
 			for (String tableName : tablesList) {
