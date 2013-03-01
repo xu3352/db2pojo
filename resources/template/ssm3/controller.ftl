@@ -41,14 +41,14 @@ public class ${class_name}Controller {
 	}
 	
 	@RequestMapping(value="/add", method = RequestMethod.POST)
-	public String add(${class_name} ${class_name}) {
-		${class_name?uncap_first}ServiceImpl.save(${class_name});
+	public String add(${class_name} ${class_name?uncap_first}) {
+		${class_name?uncap_first}ServiceImpl.save(${class_name?uncap_first});
 		return "redirect:/${class_name?uncap_first}";
 	}
 	
 	@RequestMapping(value="/update", method = RequestMethod.POST)
-	public String update(${class_name} ${class_name}) {
-		${class_name?uncap_first}ServiceImpl.update(${class_name});
+	public String update(${class_name} ${class_name?uncap_first}) {
+		${class_name?uncap_first}ServiceImpl.update(${class_name?uncap_first});
 		return "redirect:/${class_name?uncap_first}";
 	}
 	

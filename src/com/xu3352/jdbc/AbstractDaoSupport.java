@@ -1,11 +1,12 @@
 package com.xu3352.jdbc;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.jdbc.Connection;
 import com.xu3352.config.DbConfig;
 import com.xu3352.config.SetupConfig;
 import com.xu3352.core.Column;
@@ -37,8 +38,34 @@ public abstract class AbstractDaoSupport {
 	 * @return
 	 */
 	public static AbstractDaoSupport getInstance() {
-		// driverName.contains("mysql")
+		if (driverName.contains("oracle")) {
+			return new OracleDao();
+		}
 		return new MysqlDao();
+	}
+	
+	/**
+	 * query all table name
+	 * @author xuyl
+	 * @date 2013-3-1
+	 * @param nativeSql
+	 * @return
+	 */
+	public List<String> queryAllTables(String nativeSql) {
+		List<String> list = new ArrayList<String>();
+		try {
+			checkDriver();
+			Connection conn = getConn();
+			ResultSet rs = createQuary(conn, nativeSql);
+			while (rs.next()) {
+				list.add(rs.getString(1));
+			}
+			rs.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 	
 	/**
