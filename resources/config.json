@@ -1,17 +1,20 @@
 {
+    // 项目名称(package包名)
 	"project" 			: "mars",
-	
+
 	"author" 			: "xuyl",
-	
+
+    // 数据库信息. 目前仅支持 mysql 或 oracle
 	"dbConfig" : {
 		"driverClass" 	: "org.gjt.mm.mysql.Driver",
 		"username" 		: "root",
 		"password" 		: "xu3352",
 		"url" 			: "jdbc:mysql:\/\/localhost:3306/mars?useUnicode=true&characterEncoding=UTF-8"
-	}, 
-	
+	},
+
 	"ignorePrefix" : "t_",
-	
+
+    // 多个表可以放到同一个组的目录下面, 否则以表名为模块创建对应的文件夹
 	"groups" : [{
 			"name" 	 : "course",
 			"prefix" : "course,question,quiz"
@@ -22,9 +25,11 @@
 			"name" 	 : "users",
 			"prefix" : "user"
 	}],
-	
+
+    // 自定义模板根目录
 	"templateDir" : "resources/template/ssm3/",
-	
+
+    // 每个自定义模板的 路径和文件名 生成规则
 	"mappings" : [{
 			"template"	:	"controller.ftl",
 			"dir"		:	"com/${project}/${model}/controller",

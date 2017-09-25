@@ -42,13 +42,10 @@ public class SetupConfig {
 		StringBuilder sb = new StringBuilder("");
 		try {
 	        BufferedReader in = new BufferedReader(new FileReader(USER_DIR + "/resources/config.json"));
-	        String str = "";
+	        String str;
 	        while ((str = in.readLine()) != null) {
-	        	int contentIndex = str.indexOf("//");		// 处理行注释
-	        	if (contentIndex != -1) {
-	        		str = str.substring(0, contentIndex);
-	        	}
-	        	sb.append(str);
+                str = str.trim();
+                if (!str.startsWith("//")) sb.append(str);  // 处理行注释过滤
 	        }
 	        in.close();
 	    } catch (IOException e) {
