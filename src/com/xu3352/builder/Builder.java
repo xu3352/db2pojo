@@ -1,5 +1,6 @@
 package com.xu3352.builder;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -42,13 +43,24 @@ public class Builder {
 			}
 		}
 	}
-	
+
+    /**
+     * 清理 target 目录
+     */
+    private void clean() {
+        String targetDir = SetupConfig.USER_DIR + SetupConfig.SEPARATOR + "target" + SetupConfig.SEPARATOR;
+        MyUtils.rm(new File(targetDir));
+        System.out.println("clear dir:" + targetDir);
+    }
+
 	/**
 	 * main entry
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new Builder().db2pojoEntry();
+        Builder builder = new Builder();
+        builder.clean();
+        builder.db2pojoEntry();
 		System.out.println("Congratulations! Your code generate successfully....^_^.....");
 	}
 }
