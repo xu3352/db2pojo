@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.xu3352.config.SetupConfig;
 import com.xu3352.jdbc.AbstractDaoSupport;
@@ -27,7 +28,7 @@ import freemarker.template.TemplateException;
  * @date 2012-2-16
  */
 public class BuildFactory {
-	private static final Map<String, Map<String, Object>> CACHE = new HashMap<String, Map<String, Object>>();
+	private static final Map<String, Map<String, Object>> CACHE = new ConcurrentHashMap<String, Map<String, Object>>();
 	private static SetupConfig config = SetupConfig.getInstance();
 	private static AbstractDaoSupport dao = AbstractDaoSupport.getInstance();
 	

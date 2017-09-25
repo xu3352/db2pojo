@@ -1,5 +1,7 @@
 package com.xu3352.config;
 
+import com.xu3352.util.StringUtil;
+
 /**
  * 模板文件的生成路径映射关系
  * @author xuyl
@@ -12,7 +14,7 @@ public class TemplateMapping {
 	private String packagePath;			// default calc from dir
 	private String rpadding = "";		// padding the end of file name 
 	private String lpadding = "";		// padding the start of file name 
-	
+
 	/**
 	 * if packagePath is null, calculate result value of dir filed
 	 * @author xuyl
@@ -22,12 +24,15 @@ public class TemplateMapping {
 	 * @return
 	 */
 	public String buildPackage(String project, String modelName) {
-		if (packagePath != null && !packagePath.trim().isEmpty()) {
-			return packagePath.replaceAll("\\$\\{project\\}", project).replaceAll("\\$\\{model\\}", modelName);
+		if (StringUtil.isNotBlank(packagePath)) {
+            String packageStr = packagePath;
+            packageStr = StringUtil.assignValue(packageStr, "project", project);
+            packageStr = StringUtil.assignValue(packageStr, "model", modelName);
+            return packageStr;
 		}
 		return buildDir(project, modelName).replaceAll("[\\/]", ".");
 	}
-	
+
 	/**
 	 * replace parameter of '${project}' and '${model}'
 	 * @author xuyl
@@ -37,7 +42,12 @@ public class TemplateMapping {
 	 * @return
 	 */
 	public String buildDir(String project, String modelName) {
-		return dir.replaceAll("\\$\\{project\\}", project).replaceAll("\\$\\{model\\}", modelName);
+        String path = dir;
+        path = StringUtil.assignValue(path, "project", project);
+        path = StringUtil.assignValue(path, "model", modelName);
+
+        path = path.replaceAll("\\.", "/");
+        return path;
 	}
 
 	public String getTemplate() {

@@ -12,6 +12,24 @@ import com.xu3352.config.SetupConfig;
  */
 public class StringUtil {
 
+    /**
+     * 是否为空字符串
+     * @param str
+     * @return
+     */
+    public static Boolean isBlank(String str) {
+        return null == str || "".equals(str.trim());
+    }
+
+    /**
+     * 是否为非空字符串
+     * @param str
+     * @return
+     */
+    public static Boolean isNotBlank(String str) {
+        return !isBlank(str);
+    }
+
 	/**
 	 * 首字母大写
 	 * @param str
@@ -25,7 +43,7 @@ public class StringUtil {
 	/**
 	 * java风格编程：驼峰式命名<br/>
 	 * eg:user_name -> userName
-	 * @param tableName
+	 * @param columnName
 	 * @return String
 	 */
 	public static String javaStyle(String columnName) {
@@ -67,4 +85,17 @@ public class StringUtil {
 	public static String className(String tableName) {
 		return capFirst(javaStyleOfTableName(tableName));
 	}
+
+    /**
+     * 给指定 ${name} 赋值:value
+     * @param source
+     * @param name
+     * @param value
+     * @return
+     */
+    public static String assignValue(String source, String name, String value) {
+        if (isBlank(source)) return "";
+        if (!source.contains("$")) return source;
+        return source.replaceAll("\\$\\{" + name + "\\}", value);
+    }
 }
