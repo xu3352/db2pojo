@@ -65,14 +65,15 @@ public class StringUtil {
 	 * @return String
 	 */
 	public static String javaStyleOfTableName(String tableName) {
+        String tmpName = tableName;
 		String prefixs = SetupConfig.getInstance().getIgnorePrefix();
 		String[] ps = prefixs.split(",");
 		for (int i = 0; i < ps.length; i++) {
-			if (tableName.startsWith(ps[i])) {
-				tableName = tableName.replaceAll(ps[i], "");
+			if (tmpName.startsWith(ps[i])) {
+                tmpName = tmpName.replaceAll(ps[i], "");
 			}
 		}
-		return StringUtil.javaStyle(tableName);
+		return StringUtil.javaStyle(tmpName);
 	}
 	
 	/**
@@ -97,5 +98,21 @@ public class StringUtil {
         if (isBlank(source)) return "";
         if (!source.contains("$")) return source;
         return source.replaceAll("\\$\\{" + name + "\\}", value);
+    }
+
+    /**
+     * 首字母小写
+     * @param className
+     * @return
+     */
+    public static String uncapFirst(String className) {
+        if (isBlank(className)) return "";
+        String first = className.substring(0, 1).toLowerCase();
+        String last = className.substring(1);
+        return first + last;
+    }
+
+    public static void main(String[] args) {
+        System.out.println( uncapFirst("HELLO") );
     }
 }

@@ -8,6 +8,7 @@ import com.xu3352.config.SetupConfig;
 import com.xu3352.config.TemplateMapping;
 import com.xu3352.core.BuildFactory;
 import com.xu3352.jdbc.AbstractDaoSupport;
+import com.xu3352.util.DateUtil;
 import com.xu3352.util.MyUtils;
 
 /**
@@ -37,9 +38,17 @@ public class Builder {
 		for (TemplateMapping m : mappings) {
 			// iterator all databases tables.
 			for (String tableName : tablesList) {
-				String packagePath = m.buildPackage(config.getProject(), MyUtils.getModelName(tableName, "."));
-				Map<String, Object> data = factory.getParams(tableName, packagePath);
-				factory.build(MyUtils.getTemplatePath(m), data, MyUtils.getOutPutPath(m, tableName));
+                // 模板文件
+                String template = MyUtils.getTemplatePath(m);
+                // 输出文件
+                String output = MyUtils.getOutPutPath(m, tableName);
+                // 数据
+                String model = MyUtils.getModelName(tableName, ".");
+                String packagePath = m.buildPackage(config.getProject(), model);
+                Map<String, Object> data = factory.getParams(tableName, packagePath);
+
+                // freemaker 数据组装
+                factory.build(template, data, output);
 			}
 		}
 	}
@@ -58,9 +67,10 @@ public class Builder {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+        System.out.println(DateUtil.getCurrentTime() + " - build start ...");
         Builder builder = new Builder();
         builder.clean();
         builder.db2pojoEntry();
-		System.out.println("Congratulations! Your code generate successfully....^_^.....");
+		System.out.println(DateUtil.getCurrentTime() + " - Congratulations! Your code generate successfully....^_^.....");
 	}
 }

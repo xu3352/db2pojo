@@ -50,6 +50,11 @@ public class TemplateMapping {
         return path;
 	}
 
+    /** 文件名生成 */
+    public String buildFileName(String tableName) {
+        return this.getLpadding() + StringUtil.className(tableName) + this.getRpadding() + "." + this.getSuffix();
+    }
+
 	public String getTemplate() {
 		return template;
 	}

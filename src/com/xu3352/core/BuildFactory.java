@@ -7,14 +7,12 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.xu3352.config.SetupConfig;
 import com.xu3352.jdbc.AbstractDaoSupport;
+import com.xu3352.util.DateUtil;
 import com.xu3352.util.MyUtils;
 import com.xu3352.util.StringUtil;
 
@@ -37,7 +35,7 @@ public class BuildFactory {
 	 */
 	private static Configuration cfg = new Configuration();
 
-	/**
+    /**
 	 * 这里我设置模板的根目录
 	 * @param dirPath 目录路径
 	 */
@@ -71,32 +69,41 @@ public class BuildFactory {
 			e.printStackTrace();
 		}
 	}
-	
-	/**
-	 * POJO数据准备
-	 * @param tableName 
-	 * @return Map 
-	 */
-	public Map<String, Object> getParams(String tableName, String packagePath) {
-		if (CACHE.containsKey(tableName)) {
-			Map<String, Object> map = CACHE.get(tableName);
-			map.put("model_package", MyUtils.buildModelPackage(tableName));
-			map.put("package_path", packagePath);
-			return map;
-		}
-		// 数据准备,可以是Map,List或者是实体
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("package_path", packagePath);
-		map.put("model_package", MyUtils.buildModelPackage(tableName));
-		map.put("table_name", tableName);
-		map.put("class_name", StringUtil.className(tableName));
-		List<Column> columns = dao.queryColumns(tableName);
-		map.put("table_column", columns);		// 设置数据
-		map.put("hasDateColumn", Column.typeContains(columns, "Date"));		// 特殊字符处理
-		map.put("project", config.getProject());
-		map.put("author", config.getAuthor());
-		map.put("sysDate", new Date());
-		CACHE.put(tableName, map);
-		return map;
-	}
+
+    /**
+     * POJO数据准备
+     *
+     * @param tableName
+     * @return Map
+     */
+    public Map<String, Object> getParams(String tableName, String packagePath) {
+        if (CACHE.containsKey(tableName)) {
+            Map<String, Object> map = CACHE.get(tableName);
+            map.put("model_package", MyUtils.buildModelPackage(tableName));
+            map.put("package_path", packagePath);
+            return map;
+        }
+        // 数据准备,可以是Map,List或者是实体
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("package_path", packagePath);
+        map.put("model_package", MyUtils.buildModelPackage(tableName));
+
+        // 表名, 所有的列信息
+        map.put("table_name", tableName);
+        List<Column> columns = dao.queryColumns(tableName);
+        map.put("table_column", columns);        // 设置数据
+
+        String className = StringUtil.className(tableName);     // 表明转类名(驼峰式写法)
+        String instance = StringUtil.uncapFirst(className);     // 实例名称:类名首字母小写
+        map.put("class_name", className);
+        map.put("instance", instance);
+
+        map.put("hasDateColumn", Column.typeContains(columns, "Date"));        // 特殊字符处理
+        map.put("project", config.getProject());
+        map.put("author", config.getAuthor());
+        map.put("sysDate", DateUtil.getCurrentDate());
+        map.put("project", config.getProject());
+        CACHE.put(tableName, map);
+        return map;
+    }
 }
