@@ -70,6 +70,7 @@ Hello World!
 
 
 # 源码结构图
+```java
 ├── README.md
 ├── lib
 │   ├── freemarker-2.3.15.jar                 // 代码生成
@@ -109,6 +110,4 @@ Hello World!
                 ├── DateUtil.java
                 ├── MyUtils.java
                 └── StringUtil.java
-
-
-
+```
