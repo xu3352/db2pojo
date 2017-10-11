@@ -1,4 +1,4 @@
-## Hello World!
+# Hello db2pojo!
 
 # 是什么?
 这个一个代码生成工具, 通过 数据数(mysql/oracle)表 生成 Java对象实体(POJO:普通Java对象), 提高开发效率的实用工具.
@@ -40,7 +40,7 @@
 | `dbConfig.password` | 数据库密码 |  |
 | `dbConfig.dbName` | 数据库名 | 作用域为所有的模版文件，在sql生成时可能会用到 |
 | `dbConfig.url` | 数据库连接 |  |
-| `ignorePrefix` | 在把表名转换为Java驼峰式命名时忽略的前缀 | `ignorePrefix` 值如果为：`t_` 时，表名 `t_test_table` 转换为类名时则是：`TestTable`  |
+| `ignorePrefix` | 在把表名转换为Java驼峰式命名时忽略的前缀，支持多个，以英文逗号分隔开 | `ignorePrefix` 值如果为：`t_` 时，表名 `t_test_table` 转换为类名时则是：`TestTable`  |
 | `groups.name` | 指定组名，在生成POJO路径和包名时会追加到Model前面，形成一个分组的文件夹 | 配合下面的 `groups.prefix` 一起使用 |
 | `groups.prefix` | 指定组名对于的前缀 |  |
 | `templateDir` | 自定义模板根目录 | `resources/template/ssm_cms/` |
@@ -112,3 +112,7 @@
                 ├── MyUtils.java
                 └── StringUtil.java
 ```
+
+# TODO LIST
+- `config.json` 增加一个 `mappings.output_path` 更加直观的表示输出路径(Java源文件全路径)； 这样就可以取代 除了`mappings.template`之外的其他字段了; 
+- `config.json` 增加过滤某些表的功能，比如白名单和黑名单之类的
