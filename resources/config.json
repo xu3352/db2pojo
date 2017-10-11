@@ -1,7 +1,7 @@
 {
     // 项目名称(package包名)
 	"project" 			: "mars",
-
+	"alias" 			: "littlemars",
 	"author" 			: "xuyl",
 
     // 数据库信息. 目前仅支持 mysql 或 oracle
@@ -9,9 +9,11 @@
 		"driverClass" 	: "org.gjt.mm.mysql.Driver",
 		"username" 		: "root",
 		"password" 		: "xu3352",
-		"url" 			: "jdbc:mysql:\/\/localhost:3306/mars?useUnicode=true&characterEncoding=UTF-8"
+		"dbName" 		: "mars",
+		"url" 			: "jdbc:mysql://localhost:3306/mars?useUnicode=true&characterEncoding=UTF-8"
 	},
 
+    // 表明截断前缀, 如: t_test_table 生成 POJO 文件名为:TestTable
 	"ignorePrefix" : "t_",
 
     // 多个表可以放到同一个组的目录下面, 否则以表名为模块创建对应的文件夹
@@ -24,40 +26,43 @@
 		}, {
 			"name" 	 : "users",
 			"prefix" : "user"
-	}],
+    }],
 
     // 自定义模板根目录
-	"templateDir" : "resources/template/ssm3/",
+	"templateDir" : "resources/template/ssm_cms/",
 
     // 每个自定义模板的 路径和文件名 生成规则
 	"mappings" : [{
-			"template"	:	"controller.ftl",
-			"dir"		:	"com/${project}/${model}/controller",
-			"rpadding"	:	"Controller"
+			"template"	:	"action.ftl",
+			"dir"		:	"com/${project}/web/${alias}",
+			"rpadding"	:	"Action"
 		}, {
 			"template"	:	"pojo.ftl",
-			"dir"		:	"com/${project}/${model}/bean"
+			"dir"		:	"com/${project}/pojo/${alias}"
 		}, {
-			"template"	:	"search.ftl",
-			"dir"		:	"com/${project}/${model}/bean",
-			"rpadding"	:	"Search"
+			"template"	:	"page.ftl",
+			"dir"		:	"com/${project}/page",
+			"rpadding"	:	"Page"
 		}, {
-			"template"	:	"service_impl.ftl",
-			"dir"		:	"com/${project}/${model}/service",
-			"rpadding"	:	"ServiceImpl"
-		}, {
-			"template"	:	"service_spi.ftl",
-			"dir"		:	"com/${project}/${model}/service/spi",
-			"lpadding"	:	"I",
+			"template"	:	"service.ftl",
+			"dir"		:	"com/${project}/service",
 			"rpadding"	:	"Service"
 		}, {
-			"template"	:	"mybatis_xml.ftl",
-			"dir"		:	"mapper/${model}",
-			"suffix"	:	"xml"
+			"template"	:	"service_impl.ftl",
+			"dir"		:	"com/${project}/service/impl",
+			"rpadding"	:	"ServiceImpl"
 		}, {
-			"template"	:	"junit_test.ftl",
-			"dir"		:	"test/com/${project}/${model}",
-			"packagePath":	"com.${project}.${model}",
-			"rpadding"	:	"Test"
-	}]
+			"template"	:	"dao.ftl",
+			"dir"		:	"com/${project}/dao",
+			"rpadding"	:	"Dao"
+		}, {
+			"template"	:	"dao_impl.ftl",
+			"dir"		:	"com/${project}/dao/impl",
+			"rpadding"	:	"DaoImpl"
+		}, {
+			"template"	:	"mybatis.ftl",
+			"dir"		:	"sqlmap",
+            "rpadding"	:	"Dao",
+			"suffix"	:	"xml"
+		}]
 }

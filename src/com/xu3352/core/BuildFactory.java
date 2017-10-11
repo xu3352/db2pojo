@@ -11,6 +11,7 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.xu3352.config.SetupConfig;
+import com.xu3352.config.TemplateMapping;
 import com.xu3352.jdbc.AbstractDaoSupport;
 import com.xu3352.util.DateUtil;
 import com.xu3352.util.MyUtils;
@@ -71,38 +72,50 @@ public class BuildFactory {
 	}
 
     /**
-     * POJO数据准备
-     *
+     * POJO数据准备 (freemaker模版的数据)
      * @param tableName
      * @return Map
      */
-    public Map<String, Object> getParams(String tableName, String packagePath) {
+    public Map<String, Object> buildParams(String tableName, TemplateMapping mapping) {
+        String modelName = MyUtils.getModelName(tableName, ".");
+        String modelPackage = MyUtils.buildModelPackage(tableName);
+        String packagePath = mapping.buildPackage(config, modelName);
+
+        // 数据做缓存，不然一个表每个套模都会查下一次
         if (CACHE.containsKey(tableName)) {
             Map<String, Object> map = CACHE.get(tableName);
-            map.put("model_package", MyUtils.buildModelPackage(tableName));
+            // 每个表有多套模板，所以每次都重置这两个值
+            map.put("model_package", modelPackage);
             map.put("package_path", packagePath);
             return map;
         }
+
         // 数据准备,可以是Map,List或者是实体
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("package_path", packagePath);
-        map.put("model_package", MyUtils.buildModelPackage(tableName));
+        map.put("model_package", modelPackage);
 
-        // 表名, 所有的列信息
-        map.put("table_name", tableName);
+        // 数据库相关：表名, 所有的列信息
         List<Column> columns = dao.queryColumns(tableName);
-        map.put("table_column", columns);        // 设置数据
+        map.put("table_name", tableName);
+        map.put("table_column", columns);
 
+        // 表名对应的(Model)模块类名，实例名称
         String className = StringUtil.className(tableName);     // 表明转类名(驼峰式写法)
         String instance = StringUtil.uncapFirst(className);     // 实例名称:类名首字母小写
         map.put("class_name", className);
         map.put("instance", instance);
 
-        map.put("hasDateColumn", Column.typeContains(columns, "Date"));        // 特殊字符处理
+        // globle config field
         map.put("project", config.getProject());
+        map.put("alias", config.getAlias());
         map.put("author", config.getAuthor());
+        map.put("dbName", config.getDbConfig().getDbName());    // 数据库名(sql语句生成时可能用到)
+
+        // 其他：当前日期 ／ 表里是否包含日期字段(特殊字符处理)
+        map.put("hasDateColumn", Column.typeContains(columns, "Date"));
         map.put("sysDate", DateUtil.getCurrentDate());
-        map.put("project", config.getProject());
+
         CACHE.put(tableName, map);
         return map;
     }

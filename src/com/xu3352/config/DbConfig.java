@@ -9,6 +9,7 @@ public class DbConfig {
 	private String driverClass;
 	private String username;
 	private String password;
+	private String dbName;
 	private String url;
 
 	public String getDriverClass() {
@@ -35,7 +36,15 @@ public class DbConfig {
 		this.password = password;
 	}
 
-	public String getUrl() {
+    public String getDbName() {
+        return dbName;
+    }
+
+    public void setDbName(String dbName) {
+        this.dbName = dbName;
+    }
+
+    public String getUrl() {
 		return url;
 	}
 

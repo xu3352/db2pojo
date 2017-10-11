@@ -43,11 +43,9 @@ public class Builder {
                 // 输出文件
                 String output = MyUtils.getOutPutPath(m, tableName);
                 // 数据
-                String model = MyUtils.getModelName(tableName, ".");
-                String packagePath = m.buildPackage(config.getProject(), model);
-                Map<String, Object> data = factory.getParams(tableName, packagePath);
+                Map<String, Object> data = factory.buildParams(tableName, m);
 
-                // freemaker 数据组装
+                // freemaker批量生产代码
                 factory.build(template, data, output);
 			}
 		}
@@ -69,7 +67,11 @@ public class Builder {
 	public static void main(String[] args) {
         System.out.println(DateUtil.getCurrentTime() + " - build start ...");
         Builder builder = new Builder();
+
+        // 每次运行前清理 target 目录
         builder.clean();
+
+        // 开始批量生成代码
         builder.db2pojoEntry();
 		System.out.println(DateUtil.getCurrentTime() + " - Congratulations! Your code generate successfully....^_^.....");
 	}

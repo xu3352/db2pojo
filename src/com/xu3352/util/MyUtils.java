@@ -70,7 +70,7 @@ public class MyUtils {
 	 */
 	public static String getOutPutPath(TemplateMapping m, String tableName) {
         String targetDir = SetupConfig.USER_DIR + SetupConfig.SEPARATOR + "target" + SetupConfig.SEPARATOR;
-        String path = targetDir + m.buildDir(config.getProject(), getModelName(tableName, "/")) + SetupConfig.SEPARATOR;
+        String path = targetDir + m.buildDir(config, getModelName(tableName, "/")) + SetupConfig.SEPARATOR;
 		path += m.buildFileName(tableName);
 		mkdir(path);
 		return path;
@@ -111,9 +111,8 @@ public class MyUtils {
 	 * project + group + tableName
 	 * @author xuyl
 	 * @date 2013-2-28
-	 * @return
 	 */
 	public static String buildModelPackage(String tableName) {
-		return config.getProject() + "." +getModelName(tableName, ".");
-	}
+        return config.getProject() + "." + getModelName(tableName, ".");
+    }
 }

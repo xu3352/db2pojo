@@ -20,6 +20,7 @@ public class SetupConfig {
 	public static final String SEPARATOR = File.separator;
 	
 	private String project;
+	private String alias;
 	private String author = "admin";	// default 'admin'
 	private String ignorePrefix;
 	private DbConfig dbConfig;
@@ -75,7 +76,15 @@ public class SetupConfig {
 		this.project = project;
 	}
 
-	public String getAuthor() {
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
+    public String getAuthor() {
 		return author;
 	}
 

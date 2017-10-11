@@ -19,36 +19,36 @@ public class TemplateMapping {
 	 * if packagePath is null, calculate result value of dir filed
 	 * @author xuyl
 	 * @date 2013-1-8
-	 * @param project
-	 * @param modelName
-	 * @return
+	 * @param config
+     * @param modelName
 	 */
-	public String buildPackage(String project, String modelName) {
+	public String buildPackage(SetupConfig config, String modelName) {
 		if (StringUtil.isNotBlank(packagePath)) {
             String packageStr = packagePath;
-            packageStr = StringUtil.assignValue(packageStr, "project", project);
+            packageStr = StringUtil.assignValue(packageStr, "project", config.getProject());
             packageStr = StringUtil.assignValue(packageStr, "model", modelName);
+            packageStr = StringUtil.assignValue(packageStr, "alias", config.getAlias());
             return packageStr;
 		}
-		return buildDir(project, modelName).replaceAll("[\\/]", ".");
+		return buildDir(config, modelName).replaceAll("[\\/]", ".");
 	}
 
 	/**
-	 * replace parameter of '${project}' and '${model}'
+	 * replace parameter of '${project}' and '${model}' and '${alias}'
 	 * @author xuyl
 	 * @date 2013-1-8
-	 * @param project
-	 * @param modelName
-	 * @return
+	 * @param config
+     * @param modelName
 	 */
-	public String buildDir(String project, String modelName) {
+    public String buildDir(SetupConfig config, String modelName) {
         String path = dir;
-        path = StringUtil.assignValue(path, "project", project);
+        path = StringUtil.assignValue(path, "project", config.getProject());
         path = StringUtil.assignValue(path, "model", modelName);
+        path = StringUtil.assignValue(path, "alias", config.getAlias());
 
         path = path.replaceAll("\\.", "/");
         return path;
-	}
+    }
 
     /** 文件名生成 */
     public String buildFileName(String tableName) {
