@@ -17,13 +17,9 @@ import com.xu3352.util.MyUtils;
  * @date 2013-1-7
  */
 public class Builder {
-	/**
-	 * freemarker factory
-	 */
+	/** freemarker factory */
 	private static BuildFactory factory = new BuildFactory();
-	/**
-	 * config instance
-	 */
+	/** config instance */
 	private static SetupConfig config = SetupConfig.getInstance();
 
 	/**
@@ -51,19 +47,14 @@ public class Builder {
 		}
 	}
 
-    /**
-     * 清理 target 目录
-     */
+    /** 清理 target 目录 */
     private void clean() {
         String targetDir = SetupConfig.USER_DIR + SetupConfig.SEPARATOR + "target" + SetupConfig.SEPARATOR;
         MyUtils.rm(new File(targetDir));
         System.out.println("clear dir:" + targetDir);
     }
 
-	/**
-	 * main entry
-	 * @param args
-	 */
+	/** 程序执行入口 */
 	public static void main(String[] args) {
         System.out.println(DateUtil.getCurrentTime() + " - build start ...");
         Builder builder = new Builder();
