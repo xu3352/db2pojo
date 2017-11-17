@@ -1,7 +1,8 @@
 {
-    // 项目名称(package包名)
-	"project" 			: "mars",
-	"alias" 			: "littlemars",
+    // 项目名称(package包名), 注意 mappings 的 dir 的值
+	"project" 			: "com.company.project",
+    // 如果这里不进行设置的话, 注意模板里有些地方需要去掉
+	"alias" 			: "myProject",
 	"author" 			: "xuyl",
 
     // 数据库信息. 目前仅支持 mysql 或 oracle
@@ -34,34 +35,34 @@
     // 每个自定义模板的 路径和文件名 生成规则
 	"mappings" : [{
 			"template"	:	"action.ftl",
-			"dir"		:	"com/${project}/web/${alias}",
+			"dir"		:	"${project}/web/${alias}",
 			"rpadding"	:	"Action"
 		}, {
 			"template"	:	"pojo.ftl",
-			"dir"		:	"com/${project}/pojo/${alias}"
+			"dir"		:	"${project}/pojo/${alias}"
 		}, {
 			"template"	:	"page.ftl",
-			"dir"		:	"com/${project}/page",
+			"dir"		:	"${project}/page/${alias}",
 			"rpadding"	:	"Page"
 		}, {
 			"template"	:	"service.ftl",
-			"dir"		:	"com/${project}/service",
+			"dir"		:	"${project}/service/${alias}",
 			"rpadding"	:	"Service"
 		}, {
 			"template"	:	"service_impl.ftl",
-			"dir"		:	"com/${project}/service/impl",
+			"dir"		:	"${project}/service/${alias}/impl",
 			"rpadding"	:	"ServiceImpl"
 		}, {
 			"template"	:	"dao.ftl",
-			"dir"		:	"com/${project}/dao",
+			"dir"		:	"${project}/dao/${alias}",
 			"rpadding"	:	"Dao"
 		}, {
 			"template"	:	"dao_impl.ftl",
-			"dir"		:	"com/${project}/dao/impl",
+			"dir"		:	"${project}/dao/${alias}/impl",
 			"rpadding"	:	"DaoImpl"
 		}, {
 			"template"	:	"mybatis.ftl",
-			"dir"		:	"sqlmap",
+			"dir"		:	"sqlmap/${alias}",
             "rpadding"	:	"Dao",
 			"suffix"	:	"xml"
 		}]

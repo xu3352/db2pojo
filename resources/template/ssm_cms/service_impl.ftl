@@ -1,9 +1,9 @@
 package ${package_path};
 
-import com.${project}.common.page.Page;
-import com.${project}.pojo.${alias}.${class_name};
-import com.${project}.service.${class_name}Service;
-import com.${project}.dao.${class_name}Dao;
+import ${project}.common.page.Page;
+import ${project}.pojo.${alias}.${class_name};
+import ${project}.service.${alias}.${class_name}Service;
+import ${project}.dao.${alias}.${class_name}Dao;
 
 import java.util.List;
 

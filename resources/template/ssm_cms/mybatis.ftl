@@ -22,7 +22,7 @@
         <include refid="page_where" />
     </select>
 
-    <select id="query${class_name}ByPage" parameterType="map" resultType="com.${project}.pojo.${alias}.${class_name}">
+    <select id="query${class_name}ByPage" parameterType="map" resultType="${project}.pojo.${alias}.${class_name}">
         select <include refid="${table_name}_columns" />
         from ${dbName}.${table_name}
         <include refid="page_where" />
@@ -30,7 +30,7 @@
     </select>
 
 	<!-- 适用于主键自增类型 -->
-	<insert id="save" parameterType="com.${project}.pojo.${alias}.${class_name}" useGeneratedKeys="true" keyProperty="id">
+	<insert id="save" parameterType="${project}.pojo.${alias}.${class_name}" useGeneratedKeys="true" keyProperty="id">
 		insert into ${dbName}.${table_name} (
             <#list table_column as c>
                 <#if (c.name!="id")>${c.name}<#if c_has_next>,</#if></#if>
@@ -48,7 +48,7 @@
 		where id = ${r"#"}{id}
 	</delete>
 	
-	<update id="update" parameterType="com.${project}.pojo.${alias}.${class_name}">
+	<update id="update" parameterType="${project}.pojo.${alias}.${class_name}">
 		update ${dbName}.${table_name}
 		<trim prefix="set" suffixOverrides=",">
 		<#list table_column as c><#if (c_index>=1)>
@@ -58,7 +58,7 @@
 		<where>id = ${r"#"}{id}</where>
 	</update>
 	
-	<select id="findById" resultType="com.${project}.pojo.${alias}.${class_name}" parameterType="String" >
+	<select id="findById" resultType="${project}.pojo.${alias}.${class_name}" parameterType="String" >
 		select <include refid="${table_name}_columns" />
 		from ${dbName}.${table_name}
 		where id = ${r"#"}{id}

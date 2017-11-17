@@ -2,9 +2,9 @@ package ${package_path};
 
 import org.mybatis.spring.SqlSessionTemplate;
 
-import com.${project}.common.page.Page;
-import com.${project}.pojo.${alias}.${class_name};
-import com.${project}.dao.${class_name}Dao;
+import ${project}.common.page.Page;
+import ${project}.pojo.${alias}.${class_name};
+import ${project}.dao.${alias}.${class_name}Dao;
 
 import java.util.HashMap;
 import java.util.List;

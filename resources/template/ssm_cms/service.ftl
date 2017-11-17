@@ -1,7 +1,7 @@
 package ${package_path};
 
-import com.${project}.common.page.Page;
-import com.${project}.pojo.${alias}.${class_name};
+import ${project}.common.page.Page;
+import ${project}.pojo.${alias}.${class_name};
 
 import java.util.List;
 

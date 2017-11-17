@@ -1,13 +1,13 @@
 package ${package_path};
 
-import com.${project}.common.constants.Constants;
-import com.${project}.common.exception.BizException;
-import com.${project}.common.page.Page;
+import ${project}.common.constants.Constants;
+import ${project}.common.exception.BizException;
+import ${project}.common.page.Page;
 
-import com.${project}.page.${class_name}Page;
-import com.${project}.pojo.${alias}.${class_name};
-import com.${project}.service.${class_name}Service;
-import com.${project}.pojo.User;
+import ${project}.page.${alias}.${class_name}Page;
+import ${project}.pojo.${alias}.${class_name};
+import ${project}.service.${alias}.${class_name}Service;
+import ${project}.pojo.User;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;

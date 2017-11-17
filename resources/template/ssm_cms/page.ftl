@@ -1,6 +1,6 @@
 package ${package_path};
 
-import com.${project}.common.page.Page;
+import ${project}.common.page.Page;
 
 /**
 * POJO:${class_name}Page
