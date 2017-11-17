@@ -11,6 +11,7 @@ import com.xu3352.config.SetupConfig;
  * @date 2012-2-16
  */
 public class StringUtil {
+    private static final Pattern PATTERN_NUMBER = Pattern.compile("(\\d+)");
 
     /**
      * 是否为空字符串
@@ -112,7 +113,21 @@ public class StringUtil {
         return first + last;
     }
 
+    /**
+     * 类型对应的长度 varchar(100) => 100
+     * @param mysqlType
+     * @return
+     */
+    public static int typesLength(String mysqlType) {
+        Matcher matcher = PATTERN_NUMBER.matcher(mysqlType);
+        if (matcher.find()) return Integer.valueOf(matcher.group(1));
+        return 0;
+    }
+
     public static void main(String[] args) {
-        System.out.println( uncapFirst("HELLO") );
+        // System.out.println( uncapFirst("HELLO") );
+        System.out.println( typesLength("varchar(100)") );
+        System.out.println( typesLength("tinyint(1)") );
+        System.out.println( typesLength("text") );
     }
 }
