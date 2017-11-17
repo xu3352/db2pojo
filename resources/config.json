@@ -17,6 +17,12 @@
     // 表明截断前缀, 如: t_test_table 生成 POJO 文件名为:TestTable
 	"ignorePrefix" : "t_",
 
+    // 排除指定的表(正则)
+    "tableExcludesRegex" : "",
+
+    // 保留指定的表(正则)
+    "tableIncludesRegex" : "",
+
     // 多个表可以放到同一个组的目录下面, 否则以表名为模块创建对应的文件夹
 	"groups" : [{
 			"name" 	 : "course",

@@ -58,7 +58,10 @@ public abstract class AbstractDaoSupport {
 			Connection conn = getConn();
 			ResultSet rs = createQuary(conn, nativeSql);
 			while (rs.next()) {
-				list.add(rs.getString(1));
+                String tableName = rs.getString(1);
+                if (SetupConfig.filterTableName(tableName)) {
+                    list.add(tableName);
+                }
 			}
 			rs.close();
 			conn.close();
