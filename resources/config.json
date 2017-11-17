@@ -35,35 +35,27 @@
     // 每个自定义模板的 路径和文件名 生成规则
 	"mappings" : [{
 			"template"	:	"action.ftl",
-			"dir"		:	"${project}/web/${alias}",
-			"rpadding"	:	"Action"
+			"output_path":  "${project}/web/${alias}/${class_name}Action.java"
 		}, {
 			"template"	:	"pojo.ftl",
-			"dir"		:	"${project}/pojo/${alias}"
+            "output_path":  "${project}/pojo/${alias}/${class_name}.java"
 		}, {
 			"template"	:	"page.ftl",
-			"dir"		:	"${project}/page/${alias}",
-			"rpadding"	:	"Page"
+            "output_path":  "${project}/page/${alias}/${class_name}Page.java"
 		}, {
 			"template"	:	"service.ftl",
-			"dir"		:	"${project}/service/${alias}",
-			"rpadding"	:	"Service"
+            "output_path":  "${project}/service/${alias}/${class_name}Service.java"
 		}, {
 			"template"	:	"service_impl.ftl",
-			"dir"		:	"${project}/service/${alias}/impl",
-			"rpadding"	:	"ServiceImpl"
+            "output_path":  "${project}/service/${alias}/impl/${class_name}ServiceImpl.java"
 		}, {
 			"template"	:	"dao.ftl",
-			"dir"		:	"${project}/dao/${alias}",
-			"rpadding"	:	"Dao"
+            "output_path":  "${project}/dao/${alias}/${class_name}Dao.java"
 		}, {
 			"template"	:	"dao_impl.ftl",
-			"dir"		:	"${project}/dao/${alias}/impl",
-			"rpadding"	:	"DaoImpl"
+            "output_path":  "${project}/dao/${alias}/impl/${class_name}DaoImpl.java"
 		}, {
 			"template"	:	"mybatis.ftl",
-			"dir"		:	"sqlmap/${alias}",
-            "rpadding"	:	"Dao",
-			"suffix"	:	"xml"
+            "output_path":  "sqlmap/${alias}/${class_name}Dao.xml"
 		}]
 }

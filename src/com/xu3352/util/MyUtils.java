@@ -69,8 +69,7 @@ public class MyUtils {
 	 * @return
 	 */
 	public static String getOutPutPath(TemplateMapping m, String tableName) {
-        String targetDir = SetupConfig.USER_DIR + SetupConfig.SEPARATOR + "target" + SetupConfig.SEPARATOR;
-        String path = targetDir + m.buildDir(config, getModelName(tableName, "/")) + SetupConfig.SEPARATOR;
+        String path = SetupConfig.getTargetDir() + m.buildDir(tableName) + SetupConfig.SEPARATOR;
 		path += m.buildFileName(tableName);
 		mkdir(path);
 		return path;

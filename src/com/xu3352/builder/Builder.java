@@ -36,20 +36,23 @@ public class Builder {
 			for (String tableName : tablesList) {
                 // 模板文件
                 String template = MyUtils.getTemplatePath(m);
+
                 // 输出文件
-                String output = MyUtils.getOutPutPath(m, tableName);
-                // 数据
-                Map<String, Object> data = factory.buildParams(tableName, m);
+                // String output = MyUtils.getOutPutPath(m, tableName);
+                String output = m.buildOutputPath(tableName);
+
+                // 参数数据
+                Map<String, Object> data = factory.buildParams(m, tableName);
 
                 // freemaker批量生产代码
-                factory.build(template, data, output);
+                 factory.build(template, data, output);
 			}
 		}
 	}
 
     /** 清理 target 目录 */
     private void clean() {
-        String targetDir = SetupConfig.USER_DIR + SetupConfig.SEPARATOR + "target" + SetupConfig.SEPARATOR;
+        String targetDir = SetupConfig.getTargetDir();
         MyUtils.rm(new File(targetDir));
         System.out.println("clear dir:" + targetDir);
     }

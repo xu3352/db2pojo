@@ -68,6 +68,11 @@ public class SetupConfig {
 		return instance;
 	}
 
+	/** target目录(存放输出代码的路径) */
+	public static String getTargetDir() {
+        return SetupConfig.USER_DIR + SEPARATOR + "target" + SEPARATOR;
+    }
+
 	public String getProject() {
 		return project;
 	}

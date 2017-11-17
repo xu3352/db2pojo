@@ -130,4 +130,27 @@ public class StringUtil {
         System.out.println( typesLength("tinyint(1)") );
         System.out.println( typesLength("text") );
     }
+
+    /**
+     * 转换文件路径
+     * 比如: com.company.project/web/myProject/TestTableAction.java
+     * 最后返回 com/company/project/web/myProject/TestTableAction.java
+     */
+    public static String filePathConvert(String output_path) {
+        String postfix = "";
+        int index = output_path.lastIndexOf('.');
+        if (index > 0) postfix = output_path.substring(index);
+        return output_path.substring(0, index).replaceAll("\\.", "/") + postfix;
+    }
+
+    /**
+     * 转换包路径
+     * 比如: com.company.project/web/myProject/TestTableAction.java
+     * 最后返回 com.company.project.web.myProject
+     */
+    public static String packageConvert(String output_path) {
+        String path = filePathConvert(output_path);
+        int index = path.lastIndexOf('/');
+        return path.substring(0, index).replaceAll("/", "\\.");
+    }
 }

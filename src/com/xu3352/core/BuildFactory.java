@@ -76,10 +76,10 @@ public class BuildFactory {
      * @param tableName
      * @return Map
      */
-    public Map<String, Object> buildParams(String tableName, TemplateMapping mapping) {
-        String modelName = MyUtils.getModelName(tableName, ".");
+    public Map<String, Object> buildParams(TemplateMapping mapping, String tableName) {
+        // String modelName = MyUtils.getModelName(tableName, ".");
         String modelPackage = MyUtils.buildModelPackage(tableName);
-        String packagePath = mapping.buildPackage(config, modelName);
+        String packagePath = mapping.buildPackageNew(tableName);
 
         // 数据做缓存，不然一个表每个套模都会查下一次
         if (CACHE.containsKey(tableName)) {
