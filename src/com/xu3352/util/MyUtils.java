@@ -37,23 +37,7 @@ public class MyUtils {
 	public static String getModelName(String tableName, String separator) {
         return StringUtil.javaStyleOfTableName(tableName);
 	}
-	
-	/**
-	 * generate output file path.
-	 * @author xuyl
-	 * @date 2013-1-7
-	 * @param m
-	 * @param tableName
-	 * @return
-	 */
-	@Deprecated
-	public static String getOutPutPath(TemplateMapping m, String tableName) {
-        String path = SetupConfig.getTargetDir() + m.buildDir(tableName) + SetupConfig.SEPARATOR;
-		path += m.buildFileName(tableName);
-		mkdir(path);
-		return path;
-	}
-	
+
 	/**
 	 * mkdir by path if not exist
 	 * @author xuyl

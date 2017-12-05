@@ -38,7 +38,6 @@ public class Builder {
                 String template = MyUtils.getTemplatePath(m);
 
                 // 输出文件
-                // String output = MyUtils.getOutPutPath(m, tableName);
                 String output = m.buildOutputPath(tableName);
 
                 // 参数数据
