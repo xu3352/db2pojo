@@ -44,7 +44,7 @@ public class Builder {
                 Map<String, Object> data = factory.buildParams(m, tableName);
 
                 // freemaker批量生产代码
-                 factory.build(template, data, output);
+                factory.build(template, data, output);
 			}
 		}
 	}
