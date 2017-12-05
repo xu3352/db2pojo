@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.${model_package}.bean.${class_name};
-import com.${model_package}.bean.${class_name}Search;
-import com.${model_package}.service.spi.I${class_name}Service;
+import com.${project}.${alias}.bean.${class_name};
+import com.${project}.${alias}.bean.${class_name}Search;
+import com.${project}.${alias}.service.spi.I${class_name}Service;
 
 /**
  * Controller of ${class_name}
