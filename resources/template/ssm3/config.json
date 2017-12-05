@@ -1,30 +1,27 @@
 {
-    // 项目名称(package包名)
-	"project" 			: "mars",
-
-	"author" 			: "xuyl",
+    // 项目名称(package包名), 注意 mappings 的 dir 的值
+    "project" 			: "com.company.project",
+    // 如果这里不进行设置的话, 注意模板里有些地方需要去掉
+    "alias" 			: "myProject",
+    "author" 			: "xuyl",
 
     // 数据库信息. 目前仅支持 mysql 或 oracle
-	"dbConfig" : {
-		"driverClass" 	: "org.gjt.mm.mysql.Driver",
-		"username" 		: "root",
-		"password" 		: "xu3352",
-		"url" 			: "jdbc:mysql://localhost:3306/mars?useUnicode=true&characterEncoding=UTF-8"
-	},
+    "dbConfig" : {
+        "driverClass" 	: "org.gjt.mm.mysql.Driver",
+        "username" 		: "root",
+        "password" 		: "123456",
+        "dbName" 		: "mars",
+        "url" 			: "jdbc:mysql://192.168.7.251:3306/mars?useUnicode=true&characterEncoding=UTF-8"
+    },
 
-	"ignorePrefix" : "t_",
+    // 表明截断前缀, 如: t_test_table 生成 POJO 文件名为:TestTable
+    "ignorePrefix" : "t_",
 
-    // 多个表可以放到同一个组的目录下面, 否则以表名为模块创建对应的文件夹
-	"groups" : [{
-			"name" 	 : "course",
-			"prefix" : "course,question,quiz"
-		}, {
-			"name" 	 : "system",
-			"prefix" : "sys"
-		}, {
-			"name" 	 : "users",
-			"prefix" : "user"
-	}],
+    // 排除指定的表(正则)
+    "tableExcludesRegex" : "",
+
+    // 保留指定的表(正则)
+    "tableIncludesRegex" : "",
 
     // 自定义模板根目录
 	"templateDir" : "resources/template/ssm3/",
@@ -32,32 +29,24 @@
     // 每个自定义模板的 路径和文件名 生成规则
 	"mappings" : [{
 			"template"	:	"controller.ftl",
-			"dir"		:	"com/${project}/${model}/controller",
-			"rpadding"	:	"Controller"
+            "output_path":  "${project}/controller/${class_name}Controller.java"
 		}, {
 			"template"	:	"pojo.ftl",
-			"dir"		:	"com/${project}/${model}/bean"
+            "output_path":  "${project}/bean/${class_name}.java"
 		}, {
 			"template"	:	"search.ftl",
-			"dir"		:	"com/${project}/${model}/bean",
-			"rpadding"	:	"Search"
+            "output_path":  "${project}/bean/${class_name}Search.java"
 		}, {
 			"template"	:	"service_impl.ftl",
-			"dir"		:	"com/${project}/${model}/service",
-			"rpadding"	:	"ServiceImpl"
+            "output_path":  "${project}/service/${class_name}ServiceImpl.java"
 		}, {
 			"template"	:	"service_spi.ftl",
-			"dir"		:	"com/${project}/${model}/service/spi",
-			"lpadding"	:	"I",
-			"rpadding"	:	"Service"
+            "output_path":  "${project}/service/I${class_name}Service.java"
 		}, {
 			"template"	:	"mybatis_xml.ftl",
-			"dir"		:	"mapper/${model}",
-			"suffix"	:	"xml"
+            "output_path":  "mapper/${class_name}.xml"
 		}, {
 			"template"	:	"junit_test.ftl",
-			"dir"		:	"test/com/${project}/${model}",
-			"packagePath":	"com.${project}.${model}",
-			"rpadding"	:	"Test"
+            "output_path":  "test/${project}/I${class_name}Test.java"
 	}]
 }

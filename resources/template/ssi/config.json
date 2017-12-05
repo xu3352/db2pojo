@@ -1,47 +1,50 @@
 {
-	"project" 			: "video",
-	
-	"author" 			: "xuyl",
-	
-	"dbConfig" : {
-		"driverClass" 	: "org.gjt.mm.mysql.Driver",
-		"username" 		: "root",
-		"password" 		: "xu3352",
-		"url" 			: "jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8"
-	}, 
-	
-	"ignorePrefix" : "t_,m_",
+    // 项目名称(package包名), 注意 mappings 的 dir 的值
+    "project" 			: "com.company.project",
+    // 如果这里不进行设置的话, 注意模板里有些地方需要去掉
+    "alias" 			: "myProject",
+    "author" 			: "xuyl",
+
+    // 数据库信息. 目前仅支持 mysql 或 oracle
+    "dbConfig" : {
+        "driverClass" 	: "org.gjt.mm.mysql.Driver",
+        "username" 		: "root",
+        "password" 		: "123456",
+        "dbName" 		: "mars",
+        "url" 			: "jdbc:mysql://192.168.7.251:3306/mars?useUnicode=true&characterEncoding=UTF-8"
+    },
+
+    // 表明截断前缀, 如: t_test_table 生成 POJO 文件名为:TestTable
+    "ignorePrefix" : "t_",
+
+    // 排除指定的表(正则)
+    "tableExcludesRegex" : "",
+
+    // 保留指定的表(正则)
+    "tableIncludesRegex" : "",
 	
 	"templateDir" : "resources/template/ssi/",
 	
 	"mappings" : [{
 			"template"	:	"action.ftl",
-			"dir"		:	"com/${project}/${model}/action",
-			"rpadding"	:	"Action"
+            "output_path":  "${project}/action/${alias}/${class_name}Action.java"
 		}, {
 			"template"	:	"pojo.ftl",
-			"dir"		:	"com/${project}/${model}/pojo"
+            "output_path":  "${project}/pojo/${alias}/${class_name}.java"
 		}, {
 			"template"	:	"search.ftl",
-			"dir"		:	"com/${project}/${model}/search",
-			"rpadding"	:	"Search"
+            "output_path":  "${project}/search/${alias}/${class_name}Search.java"
 		}, {
 			"template"	:	"service_impl.ftl",
-			"dir"		:	"com/${project}/${model}/service",
-			"rpadding"	:	"ServiceImpl"
+            "output_path":  "${project}/service/${alias}/${class_name}ServiceImpl.java"
 		}, {
 			"template"	:	"service_spi.ftl",
-			"dir"		:	"com/${project}/${model}/service/spi",
-			"lpadding"	:	"I",
-			"rpadding"	:	"Service"
+            "output_path":  "${project}/service/${alias}/spi/I${class_name}Service.java"
 		}, {
 			"template"	:	"ibatis_xml.ftl",
-			"dir"		:	"mapper",
-			"suffix"	:	"xml"
+            "output_path":  "mapper/${class_name}.xml"
 		}, {
 			"template"	:	"junit_test.ftl",
-			"dir"		:	"test/com/${project}/${model}",
-			"packagePath":	"com.${project}.${model}",
-			"rpadding"	:	"Test"
+            "output_path":  "test/${project}/${class_name}Test.java"
 	}]
 }

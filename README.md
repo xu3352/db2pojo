@@ -110,7 +110,8 @@
                 └── StringUtil.java
 ```
 
-# DONE LIST
+# DONE LIST(新的在前面)
+- 删除除了 mappings.template 和 mappings.output_path 之外的字段; 另外2套模板的 `config.json` 更新
 - `config.json` 去掉 groups 节点, 输出路径(和报名)以 `mappings.output_path` 为准
 - `config.json` 增加一个 `mappings.output_path` 更加直观的表示输出路径(Java源文件全路径)； 这样就可以取代 除了`mappings.template`之外的其他字段了; 
 - `config.json` 增加过滤某些表的功能，比如白名单和黑名单之类的
