@@ -43,18 +43,14 @@
 | `dbConfig.dbName` | 数据库名 | 作用域为所有的模版文件，在sql生成时可能会用到 |
 | `dbConfig.url` | 数据库连接 |  |
 | `ignorePrefix` | 在把表名转换为Java驼峰式命名时忽略的前缀，支持多个，以英文逗号分隔开 | `ignorePrefix` 值如果为：`t_` 时，表名 `t_test_table` 转换为类名时则是：`TestTable`  |
-| `groups.name` | 指定组名，在生成POJO路径和包名时会追加到Model前面，形成一个分组的文件夹 | 配合下面的 `groups.prefix` 一起使用 |
-| `groups.prefix` | 指定组名对于的前缀 |  |
+| `tableExcludesRegex` | 去除的表正则表达式 | 匹配的表名都将剔除掉 |
+| `tableIncludesRegex` | 包含的表正则表达式 | 只有匹配的表才可以保留下来 |
 | `templateDir` | 自定义模板根目录 | `resources/template/ssm_cms/` |
 | `mappings.template` | 对应根目录下的模板文件名 | 比如POJO对应的模版：`service.ftl` |
-| `mappings.dir` | 模版对应的输出目录路径 | `com/${project}/service` |
-| `mappings.packagePath` | 类的包名，建议由 `mappings.dir` 自动生成 |  |
-| `mappings.lpadding` | 文件名左侧补齐 | 文件名前缀 `I` |
-| `mappings.rpadding` | 文件名右侧补齐 | 文件名后缀 `Service` |
-| `mappings.suffix` | 文件后缀 | 默认为java |
+| `mappings.output_path` | 更加直观的表示输出路径(Java源文件全路径) | 比如POJO对应的模版：`${project}/web/${alias}/${class_name}Action.java` 
 
 
-# 如何自定义直接的模板
+# 如何自定义自己的模板
 首先可以自己定义自己的模板文件，熟悉 `Freemarker` 语法的就轻车熟路了，支持迭代数据，格式化，简单的运算之类的
 
 **已支持使用的Freemarker参数**:
@@ -115,6 +111,9 @@
                 └── StringUtil.java
 ```
 
-# TODO LIST
+# DONE LIST
+- `config.json` 去掉 groups 节点, 输出路径(和报名)以 `mappings.output_path` 为准
 - `config.json` 增加一个 `mappings.output_path` 更加直观的表示输出路径(Java源文件全路径)； 这样就可以取代 除了`mappings.template`之外的其他字段了; 
 - `config.json` 增加过滤某些表的功能，比如白名单和黑名单之类的
+
+# TODO LIST
