@@ -58,7 +58,6 @@
 - `alias` - 字符串，类似 `project`
 - `author` - 字符串，作者名
 - `dbName` - 字符串，数据库名，生成sql语句时有时会用到
-- `model_package` - 模块包名：`project.groupName.modelName`
 - `package_path` - Java类的包名(`package`)，每个java类都会有自己的包名，而这个包名就是类所在的文件目录的路径名，其实正好就是 `/` 斜杠换成 `.` 就可以了
 - `table_name` - 表名，数据库查下到的
 - `table_column` - 表对于的所有字段列表集合（数组）
@@ -117,3 +116,4 @@
 - `config.json` 增加过滤某些表的功能，比如白名单和黑名单之类的
 
 # TODO LIST
+

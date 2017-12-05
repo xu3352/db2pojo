@@ -77,15 +77,12 @@ public class BuildFactory {
      * @return Map
      */
     public Map<String, Object> buildParams(TemplateMapping mapping, String tableName) {
-        // String modelName = MyUtils.getModelName(tableName, ".");
-        String modelPackage = MyUtils.buildModelPackage(tableName);
         String packagePath = mapping.buildPackageNew(tableName);
 
         // 数据做缓存，不然一个表每个套模都会查下一次
         if (CACHE.containsKey(tableName)) {
             Map<String, Object> map = CACHE.get(tableName);
-            // 每个表有多套模板，所以每次都重置这两个值
-            map.put("model_package", modelPackage);
+            // 每个表有多套模板，所以每次都重置
             map.put("package_path", packagePath);
             return map;
         }
@@ -93,7 +90,6 @@ public class BuildFactory {
         // 数据准备,可以是Map,List或者是实体
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("package_path", packagePath);
-        map.put("model_package", modelPackage);
 
         // 数据库相关：表名, 所有的列信息
         List<Column> columns = dao.queryColumns(tableName);

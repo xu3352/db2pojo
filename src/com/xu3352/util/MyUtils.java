@@ -84,13 +84,4 @@ public class MyUtils {
         // The directory is now empty so delete it
         return dir.delete();
     }
-
-    /**
-	 * project + group + tableName
-	 * @author xuyl
-	 * @date 2013-2-28
-	 */
-	public static String buildModelPackage(String tableName) {
-        return config.getProject() + "." + getModelName(tableName, ".");
-    }
 }
