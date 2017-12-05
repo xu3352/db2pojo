@@ -9,9 +9,9 @@
 	"dbConfig" : {
 		"driverClass" 	: "org.gjt.mm.mysql.Driver",
 		"username" 		: "root",
-		"password" 		: "xu3352",
+		"password" 		: "123456",
 		"dbName" 		: "mars",
-		"url" 			: "jdbc:mysql://localhost:3306/mars?useUnicode=true&characterEncoding=UTF-8"
+		"url" 			: "jdbc:mysql://192.168.7.251:3306/mars?useUnicode=true&characterEncoding=UTF-8"
 	},
 
     // 表明截断前缀, 如: t_test_table 生成 POJO 文件名为:TestTable
@@ -22,18 +22,6 @@
 
     // 保留指定的表(正则)
     "tableIncludesRegex" : "",
-
-    // 多个表可以放到同一个组的目录下面, 否则以表名为模块创建对应的文件夹
-	"groups" : [{
-			"name" 	 : "course",
-			"prefix" : "course,question,quiz"
-		}, {
-			"name" 	 : "system",
-			"prefix" : "sys"
-		}, {
-			"name" 	 : "users",
-			"prefix" : "user"
-    }],
 
     // 自定义模板根目录
 	"templateDir" : "resources/template/ssm_cms/",

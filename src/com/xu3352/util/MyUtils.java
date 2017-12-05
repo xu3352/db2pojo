@@ -2,7 +2,6 @@ package com.xu3352.util;
 
 import java.io.File;
 
-import com.xu3352.config.Group;
 import com.xu3352.config.SetupConfig;
 import com.xu3352.config.TemplateMapping;
 
@@ -27,37 +26,16 @@ public class MyUtils {
 	public static String getTemplatePath(TemplateMapping m) {
 		return config.getTemplateDir() + File.separator + m.getTemplate();
 	}
-
-	/**
-	 * witch group contains tableName
-	 * @author xuyl
-	 * @date 2013-2-28
-	 * @param tableName
-	 * @return
-	 */
-	public static String getGroupName(String tableName) {
-		Group[] groups = config.getGroups();
-		String name = null;
-		for (Group g : groups) {
-			name = g.findGroupName(tableName);
-			if (name != null) return name;
-		}
-		return null;
-	}
 	
 	/**
-	 * model name of project.(default: group name and tableName in java style )
+	 * model name of project.(tableName in java style )
 	 * @author xuyl
 	 * @date 2013-1-8
 	 * @param tableName
 	 * @return
 	 */
 	public static String getModelName(String tableName, String separator) {
-		String g = getGroupName(tableName);
-		if (g == null) {
-			return StringUtil.javaStyleOfTableName(tableName);
-		}
-		return g + separator + StringUtil.javaStyleOfTableName(tableName);
+        return StringUtil.javaStyleOfTableName(tableName);
 	}
 	
 	/**
@@ -68,6 +46,7 @@ public class MyUtils {
 	 * @param tableName
 	 * @return
 	 */
+	@Deprecated
 	public static String getOutPutPath(TemplateMapping m, String tableName) {
         String path = SetupConfig.getTargetDir() + m.buildDir(tableName) + SetupConfig.SEPARATOR;
 		path += m.buildFileName(tableName);

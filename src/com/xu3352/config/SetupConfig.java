@@ -33,7 +33,6 @@ public class SetupConfig {
 	private DbConfig dbConfig;
 	private String templateDir;
 	private TemplateMapping[] mappings;
-	private Group[] groups;
 
 	// 2个过滤的正则
     private static Pattern PATTERN_TABLE_EXCLUDES;
@@ -160,14 +159,6 @@ public class SetupConfig {
 		this.mappings = mappings;
 	}
 
-	public Group[] getGroups() {
-		return groups;
-	}
-
-	public void setGroups(Group[] groups) {
-		this.groups = groups;
-	}
-
     public String getTableExcludesRegex() {
         return tableExcludesRegex;
     }
@@ -187,7 +178,6 @@ public class SetupConfig {
     @Override
     public String toString() {
         return "SetupConfig [project=" + project + ", author=" + author + ", ignorePrefix=" + ignorePrefix
-                + ",\n\tgroups=" + Arrays.toString(groups)
                 + ",\n\tdbConfig=" + dbConfig + ",\n\tmappings=" + Arrays.toString(mappings) + "]";
     }
 
