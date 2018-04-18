@@ -42,24 +42,23 @@ public class MysqlDao extends AbstractDaoSupport {
 	
 	@Override
 	public String typesConvert(String mysqlType) {
-		if (mysqlType.startsWith("varchar") || mysqlType.startsWith("longtext") || mysqlType.startsWith("text")) {
+		if (mysqlType.contains("char") || mysqlType.contains("text")) {
 			return "String";
 		} else if (mysqlType.startsWith("bigint")) {
 			return "long";
-		} else if (mysqlType.startsWith("int") || mysqlType.startsWith("tinyint")) {
+		} else if (mysqlType.contains("int")) {
 		    if (StringUtil.typesLength(mysqlType) > 10) return "long";
 			return "int";
-		} else if (mysqlType.startsWith("double")) {
+		} else if (mysqlType.startsWith("decimal") || mysqlType.startsWith("double")) {
 			return "double";
 		} else if (mysqlType.startsWith("date") || mysqlType.startsWith("timestamp")) {
 			return "Date";
-		} 
+		}
 		return mysqlType;
 	}
 
 	/**
 	 * 测试入口
-	 * @param args
 	 */
 	public static void main(String[] args) {
 		AbstractDaoSupport dao = new MysqlDao();
