@@ -1,5 +1,6 @@
 package ${package_path};
 
+import org.apache.commons.lang.StringUtils;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import ${project}.common.page.Page;
@@ -50,5 +51,13 @@ public class ${class_name}DaoImpl implements ${class_name}Dao {
         Map<String, Object> param = new HashMap<String, Object>();
         param.put("id", id);
         return template.update("${instance}.deleteById", param) > 0;
+    }
+
+    @Override
+    public ${class_name} findById(String id) {
+        if (StringUtils.isBlank(id)) return null;
+        Map<String, Object> param = new HashMap<String, Object>();
+        param.put("id", id);
+        return (${class_name}) template.selectOne("${instance}.findById", param);
     }
 }

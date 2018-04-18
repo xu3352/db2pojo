@@ -19,4 +19,6 @@ public interface ${class_name}Service {
     Boolean update(${class_name} ${instance});
 
     Boolean deleteById(String id);
+
+    ${class_name} findById(String id);
 }

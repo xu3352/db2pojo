@@ -11,7 +11,6 @@ import ${project}.pojo.User;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -75,14 +74,17 @@ public class ${class_name}Action {
         request.getSession().setAttribute(this.getClass().getName() + LIST_KEY, page);
         model.put("page", page);
         model.put("list${class_name}", list${class_name});
-        return "views/${instance}/list${class_name}";
+        return "views/${alias}/${instance}List";
     }
 
     // 添加/修改页面
 	@RequestMapping(value="/modify", method = RequestMethod.GET)
 	public String add(String id, HttpServletRequest request) {
         // 如果是修改, 拿 id 查询一个对象
-		return "views/${instance}/modify";
+        ${class_name} ${instance} = ${instance}Service.findById(id);
+        // 这里存 data, 页面使用就固定了
+        model.put("${instance}", ${instance});
+		return "views/${alias}/${instance}Modify";
 	}
 
     // 添加
@@ -101,7 +103,7 @@ public class ${class_name}Action {
 
     // 删除
 	@RequestMapping(value="/del/{id}", method = RequestMethod.GET)
-	public String del(@PathVariable String id, HttpServletRequest request, Model model) {
+	public String del(@PathVariable String id, HttpServletRequest request, ModelMap model) {
 		${instance}Service.deleteById(id);
         return this.getRedirectUrl(request);
 	}

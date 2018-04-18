@@ -43,4 +43,9 @@ public class ${class_name}ServiceImpl implements ${class_name}Service {
     public Boolean deleteById(String id) {
         return ${instance}Dao.deleteById(id);
     }
+
+    @Override
+    public ${class_name} findById(String id) {
+        return ${instance}Dao.findById(id);
+    }
 }
