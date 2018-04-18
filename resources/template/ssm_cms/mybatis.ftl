@@ -32,14 +32,14 @@
 	<!-- 适用于主键自增类型 -->
 	<insert id="save" parameterType="${project}.pojo.${alias}.${class_name}" useGeneratedKeys="true" keyProperty="id">
 		insert into ${dbName}.${table_name} (
-            <#list table_column as c>
-                <#if (c.name!="id")>${c.name}<#if c_has_next>,</#if></#if>
-            </#list>
+        <#list table_column as c>
+            <#if (c.name!="id")>${c.name}<#if c_has_next>,</#if></#if>
+        </#list>
         )
 		values (
-            <#list table_column as c>
-                <#if (c.name!="id")>${r"#"}{${c.nameJ}}<#if c_has_next>,</#if></#if>
-            </#list>
+        <#list table_column as c>
+            <#if (c.name!="id")>${r"#"}{${c.nameJ}}<#if c_has_next>,</#if></#if>
+        </#list>
         )
 	</insert>
 	
@@ -58,7 +58,7 @@
 		<where>id = ${r"#"}{id}</where>
 	</update>
 	
-	<select id="findById" resultType="${project}.pojo.${alias}.${class_name}" parameterType="String" >
+	<select id="findById" resultType="${project}.pojo.${alias}.${class_name}" parameterType="map" >
 		select <include refid="${table_name}_columns" />
 		from ${dbName}.${table_name}
 		where id = ${r"#"}{id}

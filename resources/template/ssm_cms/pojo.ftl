@@ -33,7 +33,7 @@ public class ${class_name} implements Serializable {
 	// getter && setter
 	// 在setter方法最后加上"return this;"并把返回参数改为${class_name}可以实现连缀设置属性
 	<#list table_column as c>
-	<#if (c.type=="Date")>@JsonSerialize(using = ShortDateSerializer.class)</#if>
+	// <#if (c.type=="Date")>@JsonSerialize(using = ShortDateSerializer.class)</#if>
 	public ${c.type} get${c.nameJ?cap_first}() {
 		return ${c.nameJ};
 	}
