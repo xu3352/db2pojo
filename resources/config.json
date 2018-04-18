@@ -21,7 +21,7 @@
     "tableExcludesRegex" : "",
 
     // 保留指定的表(正则)
-    "tableIncludesRegex" : "",
+    "tableIncludesRegex" : "t_student",
 
     // 自定义模板根目录
 	"templateDir" : "resources/template/ssm_cms/",
