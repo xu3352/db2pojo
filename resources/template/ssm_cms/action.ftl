@@ -102,9 +102,10 @@ public class ${class_name}Action {
 	}
 
     // 删除
+    @ResponseBody
 	@RequestMapping(value="/del/{id}", method = RequestMethod.GET)
-	public String del(@PathVariable String id, HttpServletRequest request, ModelMap model) {
+	public Map<String, Object> del(@PathVariable String id, HttpServletRequest request, ModelMap model) {
 		${instance}Service.deleteById(id);
-        return this.getRedirectUrl(request);
+        return Constants.newReturnMap(0);
 	}
 }

@@ -51,5 +51,11 @@
 		}, {
 			"template"	:	"mybatis.ftl",
             "output_path":  "sqlmap/${alias}/${class_name}Dao.xml"
+		}, {
+			"template"	:	"jsp_list.ftl",
+            "output_path":  "views/${alias}/${instance}List.jsp"
+		}, {
+			"template"	:	"jsp_modify.ftl",
+            "output_path":  "views/${alias}/${instance}Modify.jsp"
 		}]
 }
