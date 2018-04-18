@@ -25,13 +25,13 @@
 # 谁适合用?
 此工具比较适合 `Java老鸟`，对 `Freemarker` 语法有一定了解最好，另外如果此工具满足不了你的特殊需求时，你也可以考虑进行改造，比如页面其实也是可以做出模版的
 
-# 如何使用?
-源码clone到本地后，建议使用IDE打开，推荐：`Intelliji IDEA` 或者 `Eclipse`，打开 `Builder.java` 文件，执行入口就在 `Builder.main()` 方法里了
-
-重要的配置文件：`resources/config.json`，在这里可以配置全局的配置，比如项目名称，作者，数据数连接(目前仅支持Mysql和Oracle，根据url自动识别)，指定自定义的模版目录，模版路径映射表。
-
-如果第一次使用，建议使用Mysql随便连接一个数据库，然后直接跑当前的: `Builder.main()` 方法，代码会生成到 `db2pojo/target` 目录下
-
+# 如何跑起来?
+1. 项目源码clone到本地
+2. 使用IDE打开项目 推荐：`Intelliji IDEA` 或者 `Eclipse`
+3. 打开 `resources/config.json` 配置文件, 修改 `mysql` 配置; 其他选项按自己需求修改 数据数连接(`Mysql/Oracle`)，根据url自动识别 (测试的SQL文件 `resources/test.sql`)
+4. 程序入口 `com.xu3352.builder.Builder.main()`, 直接执行运行即可
+5. 生成的代码在 `target` 文件夹下可以看到
+6. 改造自己的模板, 生成专属代码
 
 # 如何配置config.json
 
