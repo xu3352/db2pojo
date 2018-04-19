@@ -37,14 +37,31 @@
                 <td>
                     <table class="data-add" cellpadding="4">
                         <#list table_column as c><#if (c_index>=1)>
-                        <tr>
-                            <th>
-                                <label>${c.remark}：</label>
-                            </th>
-                            <td>
-                                <input type="text" name="${c.nameJ}" data-value="<%=data == null ? 0 : data.get${c.nameJ?cap_first}() %>" placeholder="${c.remark}" />
-                            </td>
-                        </tr>
+                            <#if (c.remarkDict.size<=1)>
+                            <tr>
+                                <th>
+                                    <label>${c.remark}：</label>
+                                </th>
+                                <td>
+                                    <input type="text" name="${c.nameJ}" data-value="<%=data == null ? "${c.defaultValue}" : data.get${c.nameJ?cap_first}() %>" placeholder="${c.remark}" />
+                                </td>
+                            </tr>
+                            </#if>
+                            <#if (c.remarkDict.size>1)>
+                            <tr>
+                                <th>
+                                    <label>${c.remarkDict.title}：</label>
+                                </th>
+                                <td>
+                                    <select name="${c.nameJ}" data-value="<%=data == null ? "${c.defaultValue}" : data.get${c.nameJ?cap_first}() %>">
+                                        <option value="${c.defaultValue}">-选择${c.remarkDict.title}-</option>
+                                        <#list c.remarkDict.list as d>
+                                        <option value="${d.k}">${d.v}</option>
+                                        </#list>
+                                    </select>
+                                </td>
+                            </tr>
+                            </#if>
                         </#if></#list>
 
                         <tr>

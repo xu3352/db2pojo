@@ -9,23 +9,19 @@ import java.util.List;
  * @date 2012-2-16
  */
 public class Column {
-	/**
-	 * 列数据类型
-	 */
+	/** 列数据类型 */
 	private String type;
-	/**
-	 * 字段名
-	 */
+	/** 字段名 */
 	private String name;
-	/**
-	 * 字段名：java风格，驼峰式
-	 */
+	/** 字段名：java风格，驼峰式 */
 	private String nameJ;
-	
-	/**
-	 * 字段备注、注释
-	 */
+	/** 字段备注、注释 */
 	private String remark;
+	/** 字段默认值 */
+	private String defaultValue;
+
+    /** 备注字典 */
+	private RemarkDict remarkDict;
 
 	/**
 	 * 默认构造
@@ -57,7 +53,8 @@ public class Column {
 		this.name = name;
 		this.nameJ = nameJ;
 		this.remark = remark;
-	}
+        this.remarkDict = new RemarkDict(remark);
+    }
 
 	/**
 	 * 获取Type
@@ -122,8 +119,24 @@ public class Column {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	
-	/**
+
+    public String getDefaultValue() {
+        return defaultValue;
+    }
+
+    public void setDefaultValue(String defaultValue) {
+        this.defaultValue = defaultValue;
+    }
+
+    public RemarkDict getRemarkDict() {
+        return remarkDict;
+    }
+
+    public void setRemarkDict(RemarkDict remarkDict) {
+        this.remarkDict = remarkDict;
+    }
+
+    /**
 	 * 列里是否包含某个类型了
 	 * @author xuyl
 	 * @date 2013-1-8
@@ -138,9 +151,15 @@ public class Column {
 		return false;
 	}
 
-	@Override
-	public String toString() {
-		return "Column [type=" + type + ", name=" + name + ", nameJ=" + nameJ + ", remark=" + remark + "]";
-	}
-
+    @Override
+    public String toString() {
+        return "Column{" +
+                "type='" + type + '\'' +
+                ", name='" + name + '\'' +
+                ", nameJ='" + nameJ + '\'' +
+                ", remark='" + remark + '\'' +
+                ", defaultValue='" + defaultValue + '\'' +
+                ", " + remarkDict +
+                '}';
+    }
 }

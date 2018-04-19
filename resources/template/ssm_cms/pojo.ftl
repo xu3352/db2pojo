@@ -33,7 +33,7 @@ public class ${class_name} implements Serializable {
 	// getter && setter
 	// 在setter方法最后加上"return this;"并把返回参数改为${class_name}可以实现连缀设置属性
 	<#list table_column as c>
-	// <#if (c.type=="Date")>@JsonSerialize(using = ShortDateSerializer.class)</#if>
+	<#if (c.type=="Date")>// @JsonSerialize(using = ShortDateSerializer.class)</#if>
 	public ${c.type} get${c.nameJ?cap_first}() {
 		return ${c.nameJ};
 	}
@@ -42,6 +42,20 @@ public class ${class_name} implements Serializable {
 		this.${c.nameJ} = ${c.nameJ}; return this;
 	}
 	</#list>
+
+    <#list table_column as c>
+        <#if (c.remarkDict.size>1 && c.type == "int")>
+    public String get${c.nameJ?cap_first}Txt() {
+        switch (${c.nameJ}) {
+            <#list c.remarkDict.list as d>
+            case ${d.k}:
+                return "${d.v}";
+            </#list>
+        }
+        return "";
+    }
+        </#if>
+    </#list>
 
 	@Override
 	public String toString() {

@@ -30,7 +30,10 @@ public class MysqlDao extends AbstractDaoSupport {
 			while (rs.next()) {
 				String type = typesConvert(rs.getString(2));
 				String javaStyle = StringUtil.javaStyle(rs.getString(1));
-				list.add(new Column(type, rs.getString(1), javaStyle, rs.getString(9)));
+                String defaultValue = rs.getString(6);
+                Column c = new Column(type, rs.getString(1), javaStyle, rs.getString(9));
+                c.setDefaultValue(defaultValue);
+				list.add(c);
 			}
 			rs.close();
 			conn.close();

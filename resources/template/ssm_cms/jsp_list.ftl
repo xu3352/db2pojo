@@ -81,9 +81,14 @@
                         for (${class_name} data : ${instance}List) { %>
                     <tr>
                         <td><%=++index%></td>
-                        <#list table_column as c>
+                <#list table_column as c>
+                    <#if (c.remarkDict.size<=1)>
                         <td><%=data.get${c.nameJ?cap_first}()%></td>
-                        </#list>
+                    </#if>
+                    <#if (c.remarkDict.size>1 && c.type == "int")>
+                        <td><%=data.get${c.nameJ?cap_first}Txt()%></td>
+                    </#if>
+                </#list>
                         <td>
                             <a href="<%=path%>/${instance}/modify.htm?id=<%=data.getId()%>"><img src="<%=path%>/images/editStock.png" border="0" width="25" height="25" title="编辑" /></a>
                             <a class="remove" href="javascript:;" data-id="<%=data.getId()%>"><img src="<%=path%>/images/deleteInfom.png" border="0" width="25" height="25" title="删除" /></a>
