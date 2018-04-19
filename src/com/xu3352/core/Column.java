@@ -1,5 +1,7 @@
 package com.xu3352.core;
 
+import com.xu3352.util.StringUtil;
+
 import java.util.List;
 
 /**
@@ -52,8 +54,8 @@ public class Column {
 		this.type = type;
 		this.name = name;
 		this.nameJ = nameJ;
-		this.remark = remark;
-        this.remarkDict = new RemarkDict(remark);
+        this.remark = StringUtil.isBlank(remark) ? nameJ : remark;
+        this.remarkDict = new RemarkDict(this.remark);
     }
 
 	/**
@@ -126,6 +128,7 @@ public class Column {
 
     public void setDefaultValue(String defaultValue) {
         this.defaultValue = defaultValue;
+	    if ("CURRENT_TIMESTAMP".equals(defaultValue)) this.defaultValue = "";
     }
 
     public RemarkDict getRemarkDict() {

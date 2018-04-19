@@ -79,7 +79,7 @@ public class ${class_name}Action {
 
     // 添加/修改页面
 	@RequestMapping(value="/modify", method = RequestMethod.GET)
-	public String add(String id, HttpServletRequest request) {
+	public String add(String id, HttpServletRequest request, ModelMap model) {
         // 如果是修改, 拿 id 查询一个对象
         ${class_name} ${instance} = ${instance}Service.findById(id);
         // 这里存 data, 页面使用就固定了

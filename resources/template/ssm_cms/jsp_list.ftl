@@ -68,9 +68,11 @@
             <table cellpadding="3" class="data-grid" data-empty-msg="没有找到数据！">
                 <thead>
                 <tr>
+                    <th>编号</th>
                 <#list table_column as c>
-                    <th>${c.remark}</th>
+                    <th>${c.remarkDict.title}</th>
                 </#list>
+                    <th>操作</th>
                 </tr>
                 </thead>
 
@@ -108,9 +110,9 @@
 </table>
 </body>
 
-<script type="text/javascript" src="<%=path %>/frame/js/jquery-easyui-1.3.1/jquery-1.8.0.min.js"></script>
-<script type="text/javascript" src="<%=path %>/frame/js/Validator/Validator.js"></script>
-<script type="text/javascript" src="<%=path %>/js/commonUtil.js"></script>
+<script type="text/javascript" src="<%=path%>/frame/js/jquery-easyui-1.3.1/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="<%=path%>/frame/js/Validator/Validator.js"></script>
+<script type="text/javascript" src="<%=path%>/js/commonUtil.js"></script>
 <script type="text/javascript" src="<%=path%>/js/layer/layer.js"></script>
 <script type="text/javascript" src="<%=path%>/js/layer/extend/layer.ext.js"></script>
 <script type="text/javascript">
@@ -118,14 +120,17 @@ $(document).ready(function(){
     // 删除按钮
     $(".remove").click(function () {
         var id = $(this).attr("data-id");
-        $.get('<%=path%>/${instance}/del/'+id+'.htm', {}, function (data) {
-            if (data.code == 0) {
-                layer.msg("操作成功!");
-                window.location.reload();
-            } else {
-                layer.alert("操作失败!原因:"+data.msg);
-            }
-        });
+        layer.confirm("确认是否删除记录？", function(index){
+            $.get('<%=path%>/${instance}/del/'+id+'.htm', {}, function(data) {
+                if (data.code == 0) {
+                    layer.msg("操作成功!");
+                    window.location.reload();
+                } else {
+                    layer.alert("操作失败!原因:"+data.msg);
+                }
+                layer.close(index);
+            }, 'json');
+        })
     });
 });
 </script>
