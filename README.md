@@ -112,6 +112,7 @@
             ├── core                            // 核心的生成逻辑处理类
             │   ├── BuildFactory.java
             │   └── Column.java
+            │   └── RemarkDict.java
             ├── jdbc                            // 数据库查下相关的接口和2个实现，主要是查下所有的表和表里的所有字段信息
             │   ├── AbstractDaoSupport.java
             │   ├── MysqlDao.java
@@ -123,12 +124,13 @@
 ```
 
 # DONE LIST(新的在前面)
-- 新增模板:列表展示页面 和 添加/修改页面 (resources/template/ssm_cms/{jsp_list.ftl,jsp_modify.ftl}) 2018.04.18
+- `2018.04.19` - mybatis.ftl模板:查询字段如果是String类型的, 那么使用 `regexp` 替代 `=`
+- `2018.04.19` - 可以根据表字段的备注生成下拉菜单选项; 作用范围:列表展示/列表搜索/添加或修改字段;    
+    如:`业余爱好:[1.美食 2.K歌 3.逛街 4.游戏 5.旅游 6.运动]`, 列表页面可以根据值为4时直接展示为游戏;添加页面则为对应的下拉
+- `2018.04.18` - 新增模板:列表展示页面 和 添加/修改页面 (`resources/template/ssm_cms/{jsp_list.ftl,jsp_modify.ftl}`)
 - 删除除了 `mappings.template` 和 `mappings.output_path` 之外的字段; 另外2套模板的 `config.json` 更新
 - `config.json` 去掉 groups 节点, 输出路径(和报名)以 `mappings.output_path` 为准
 - `config.json` 增加一个 `mappings.output_path` 更加直观的表示输出路径(Java源文件全路径)； 这样就可以取代 除了`mappings.template`之外的其他字段了; 
 - `config.json` 增加过滤某些表的功能，比如白名单和黑名单之类的
 
 # IDEA LIST
-- 可以根据表字段的备注生成下拉菜单选项; 作用范围:列表展示/列表搜索/添加或修改字段;    
-    如:`业余爱好;[1.美食 2.K歌 3.逛街 4.游戏 5.旅游 6.运动]`, 列表页面可以根据值为4时直接展示为游戏;添加页面则为对应的下拉
