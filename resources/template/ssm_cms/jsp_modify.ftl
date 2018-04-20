@@ -37,7 +37,7 @@
                 <td>
                     <table class="data-add" cellpadding="4">
                         <#list table_column as c><#if (c_index>=1)>
-                            <#if (c.remarkDict.size<=1)>
+                            <#if !(c.isDateType || c.isIntKVType)>
                             <tr>
                                 <th>
                                     <label>${c.remark}：</label>
@@ -47,7 +47,17 @@
                                 </td>
                             </tr>
                             </#if>
-                            <#if (c.remarkDict.size>1)>
+                            <#if c.isDateType>
+                            <tr>
+                                <th>
+                                    <label>${c.remark}：</label>
+                                </th>
+                                <td>
+                                    <input type="text" name="${c.nameJ}" data-value="<%=data == null ? "${c.defaultValue}" : data.get${c.nameJ?cap_first}Txt() %>" placeholder="${c.remark}" />
+                                </td>
+                            </tr>
+                            </#if>
+                            <#if c.isIntKVType>
                             <tr>
                                 <th>
                                     <label>${c.remarkDict.title}：</label>

@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" pageEncoding="utf-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="${project}.pojo.${alias}.${class_name}" %>
 
@@ -84,11 +84,11 @@
                     <tr>
                         <td><%=++index%></td>
                 <#list table_column as c>
-                    <#if (c.remarkDict.size<=1)>
-                        <td><%=data.get${c.nameJ?cap_first}()%></td>
-                    </#if>
-                    <#if (c.remarkDict.size>1 && c.type == "int")>
+                    <#if c.isDateType || c.isIntKVType>
                         <td><%=data.get${c.nameJ?cap_first}Txt()%></td>
+                    </#if>
+                    <#if !(c.isDateType || c.isIntKVType)>
+                        <td><%=data.get${c.nameJ?cap_first}()%></td>
                     </#if>
                 </#list>
                         <td>

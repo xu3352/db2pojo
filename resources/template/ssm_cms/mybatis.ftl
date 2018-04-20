@@ -11,14 +11,14 @@
     <!-- 模糊匹配可以使用 regexp -->
     <sql id="page_where">
         <trim prefix="where" prefixOverrides="and | or ">
-        <#list table_column as c><#if (c_index>=1)>
+        <#list table_column as c>
         <#if (c.type != "String") >
             <if test="${c.nameJ} != null">and ${c.name} = ${r"#"}{${c.nameJ}}</if>
         </#if>
         <#if (c.type == "String") >
             <if test="${c.nameJ} != null">and ${c.name} regexp ${r"#"}{${c.nameJ}}</if>
         </#if>
-        </#if></#list>
+        </#list>
         </trim>
     </sql>
 

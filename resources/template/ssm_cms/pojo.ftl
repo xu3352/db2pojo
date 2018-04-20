@@ -2,6 +2,7 @@ package ${package_path};
 
 <#if (hasDateColumn)>
 import java.util.Date;
+import ${project}.common.utils.FormatDate;
 </#if>
 import java.io.Serializable;
 
@@ -43,6 +44,7 @@ public class ${class_name} implements Serializable {
 	}
 	</#list>
 
+    // 其他辅助方法
     <#list table_column as c>
         <#if (c.remarkDict.size>1 && c.type == "int")>
     public String get${c.nameJ?cap_first}Txt() {
@@ -53,6 +55,11 @@ public class ${class_name} implements Serializable {
             </#list>
         }
         return "";
+    }
+        </#if>
+        <#if (c.type == "Date")>
+    public String get${c.nameJ?cap_first}Txt() {
+        return FormatDate.formatDate(${c.nameJ}, "yyyy-MM-dd HH:mm:ss");
     }
         </#if>
     </#list>

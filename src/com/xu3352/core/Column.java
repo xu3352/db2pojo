@@ -11,19 +11,14 @@ import java.util.List;
  * @date 2012-2-16
  */
 public class Column {
-	/** 列数据类型 */
-	private String type;
-	/** 字段名 */
-	private String name;
-	/** 字段名：java风格，驼峰式 */
-	private String nameJ;
-	/** 字段备注、注释 */
-	private String remark;
-	/** 字段默认值 */
-	private String defaultValue;
 
-    /** 备注字典 */
-	private RemarkDict remarkDict;
+	private String type;    // 列数据类型
+	private String name;    // 字段名
+	private String nameJ;   // 字段名：java风格，驼峰式
+	private String remark;  // 字段备注、注释
+	private String defaultValue;    // 字段默认值
+
+	private RemarkDict remarkDict;  // 备注字典
 
 	/**
 	 * 默认构造
@@ -58,66 +53,34 @@ public class Column {
         this.remarkDict = new RemarkDict(this.remark);
     }
 
-	/**
-	 * 获取Type
-	 * @return String
-	 */
 	public String getType() {
 		return type;
 	}
 
-	/**
-	 * 设置Type
-	 * @param type
-	 */
 	public void setType(String type) {
 		this.type = type;
 	}
 
-	/**
-	 * 获取列名
-	 * @return String
-	 */
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * 设置列名
-	 * @param name
-	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	/**
-	 * 获取javastyle列
-	 * @return String
-	 */
 	public String getNameJ() {
 		return nameJ;
 	}
 
-	/**
-	 * 设置javastyle列
-	 * @param nameJ
-	 */
 	public void setNameJ(String nameJ) {
 		this.nameJ = nameJ;
 	}
 
-	/**
-	 * 获取备注
-	 * @return String
-	 */
 	public String getRemark() {
 		return remark;
 	}
 
-	/**
-	 * 设置备注
-	 * @param remark
-	 */
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
@@ -153,6 +116,16 @@ public class Column {
 		}
 		return false;
 	}
+
+    /** 是否为日期类型 */
+    public boolean getIsDateType() {
+        return "Date".equals(type);
+    }
+
+    /** 是否为枚举类型 */
+    public boolean getIsIntKVType() {
+        return remarkDict.getSize() > 1 && "int".equals(type);
+    }
 
     @Override
     public String toString() {
