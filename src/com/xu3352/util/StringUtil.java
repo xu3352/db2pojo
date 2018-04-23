@@ -124,13 +124,6 @@ public class StringUtil {
         return 0;
     }
 
-    public static void main(String[] args) {
-        // System.out.println( uncapFirst("HELLO") );
-        System.out.println( typesLength("varchar(100)") );
-        System.out.println( typesLength("tinyint(1)") );
-        System.out.println( typesLength("text") );
-    }
-
     /**
      * 转换文件路径
      * 比如: com.company.project/web/myProject/TestTableAction.java
@@ -151,6 +144,14 @@ public class StringUtil {
     public static String packageConvert(String output_path) {
         String path = filePathConvert(output_path);
         int index = path.lastIndexOf('/');
+        if (index <= 0) return path;
         return path.substring(0, index).replaceAll("/", "\\.");
+    }
+
+    public static void main(String[] args) {
+        // System.out.println( uncapFirst("HELLO") );
+        System.out.println( typesLength("varchar(100)") );
+        System.out.println( typesLength("tinyint(1)") );
+        System.out.println( typesLength("text") );
     }
 }

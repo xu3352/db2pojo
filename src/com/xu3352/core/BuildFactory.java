@@ -109,7 +109,7 @@ public class BuildFactory {
         map.put("dbName", config.getDbConfig().getDbName());    // 数据库名(sql语句生成时可能用到)
 
         // 其他：当前日期 ／ 表里是否包含日期字段(特殊字符处理)
-        map.put("hasDateColumn", Column.typeContains(columns, "Date"));
+        map.put("hasDateColumn", MyUtils.typeContains(columns, "Date"));
         map.put("sysDate", DateUtil.getCurrentDate());
 
         CACHE.put(tableName, map);

@@ -1,9 +1,11 @@
 package com.xu3352.util;
 
 import java.io.File;
+import java.util.List;
 
 import com.xu3352.config.SetupConfig;
 import com.xu3352.config.TemplateMapping;
+import com.xu3352.core.Column;
 
 /**
  * 工具类
@@ -67,5 +69,20 @@ public class MyUtils {
 
         // The directory is now empty so delete it
         return dir.delete();
+    }
+
+    /**
+     * 列里是否包含某个类型了
+     * @author xuyl
+     * @date 2013-1-8
+     * @param columns
+     * @param type
+     * @return
+     */
+    public static boolean typeContains(List<Column> columns, String type) {
+        for (Column c : columns) {
+            if (c.getType().equals(type)) return true;
+        }
+        return false;
     }
 }

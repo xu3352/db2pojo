@@ -2,8 +2,6 @@ package com.xu3352.core;
 
 import com.xu3352.util.StringUtil;
 
-import java.util.List;
-
 /**
  * 数据库列实体
  * 
@@ -102,20 +100,6 @@ public class Column {
         this.remarkDict = remarkDict;
     }
 
-    /**
-	 * 列里是否包含某个类型了
-	 * @author xuyl
-	 * @date 2013-1-8
-	 * @param columns
-	 * @param type
-	 * @return
-	 */
-	public static boolean typeContains(List<Column> columns, String type) {
-		for (Column c : columns) {
-			if (c.type.equals(type)) return true;
-		}
-		return false;
-	}
 
     /** 是否为日期类型 */
     public boolean getIsDateType() {
