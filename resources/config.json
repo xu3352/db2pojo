@@ -57,5 +57,8 @@
 		}, {
 			"template"	:	"jsp_modify.ftl",
             "output_path":  "views/${alias}/${instance}Modify.jsp"
+		}, {
+			"template"	:	"z_others.ftl",
+            "output_path":  "z_config/${instance}.xml"
 		}]
 }
